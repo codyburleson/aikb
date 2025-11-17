@@ -8,7 +8,7 @@ Ever wished your AI assistants could actually understand your Obsidian vault? Or
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Course](https://img.shields.io/badge/Google_AI_Agents-Capstone-blue)
 
-**🚧 This is a Capstone Project in active development**
+**🚧 This is a [Capstone Project](https://www.kaggle.com/competitions/agents-intensive-capstone-project) in active development**
 
 This Capstone Project, part of the [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents) proposes and demonstrates a novel approach to personal knowledge management (PKM) in a system comprised of the following parts:
 
