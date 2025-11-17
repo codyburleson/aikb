@@ -65,7 +65,7 @@ We welcome feedback on the specification! See [CONTRIBUTING.md](./CONTRIBUTING.m
 
 ## License
 
-MIT - See [LICENSE](./LICENSE)
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) Attribution-ShareAlike 4.0 International
 
 ## Acknowledgments
 
