@@ -12,7 +12,7 @@ Ever wished your AI assistants could actually understand your Obsidian vault? Or
 
 This Capstone Project, part of the [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents) proposes and demonstrates a novel approach to personal knowledge management (PKM) in a system comprised of the following parts:
 
-- **[The AIKB Specification (Working Draft)](./specs/aikb-0.2.md)**: A proposal for a set of formal standards and guidelines to enable agent interoperability with personal knowledge management systems (PKMs).
+- **[The AIKB Specification (Working Draft)](./specs/aikb-0.1.md)**: A proposal for a set of formal standards and guidelines to enable agent interoperability with personal knowledge management systems (PKMs).
   - For the purpose of the Capstone Project, the scope has been limited to PKMs comprised of locally sourced markdown documents and media files, which can be easily managed by users using freely available and cross-platform tools like [Obsidian](https://obsidian.md/), [Visual Studio Code](https://code.visualstudio.com/), standard OS features and widely available text editors.
   - 🚧 AIKB Specification Draft v0.1 (in development)
 - **Reference Vault**: A repository of markdown document templates implementing metadata standards, comprehensive guidelines ("Principles, Patterns, and Practices for Knowledge Management"), and example documents that demonstrate the standards in practice.
