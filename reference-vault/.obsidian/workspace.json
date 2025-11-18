@@ -1,0 +1,211 @@
+{
+  "main": {
+    "id": "0745332330e5dc24",
+    "type": "split",
+    "children": [
+      {
+        "id": "dbe6f85a19d65462",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "88f3dcac48c9dd49",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3 Resources/Templates/Person Template.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Person Template"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "94073bf3e3da22bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "f170f4e069950af4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4597a39ab422c633",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "22326ce8dd1b50b9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5355f6f68936032d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 292.5
+  },
+  "right": {
+    "id": "7a366235aa8f53d5",
+    "type": "split",
+    "children": [
+      {
+        "id": "cbe6460bb8efa167",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7855997f49e32449",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "423e47228a9e6e3b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "d4bf6cd269277b1e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "2525f6d35bb4ecb9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "4597a39ab422c633",
+  "lastOpenFiles": [
+    "3 Resources/Templates/Event Template.md",
+    "3 Resources/Templates/Person Template.md",
+    "CHANGELOG.md",
+    "README.md",
+    "Specifications.md",
+    "3 Resources/Events/Recurring Events/Recurring Events.md",
+    "3 Resources/Events/Past Events/Past Events.md",
+    "3 Resources/Events/Current and Future Events/Current and Future Events.md",
+    "3 Resources/Events/Cancelled Events/Cancelled Events.md",
+    "3 Resources/Events/Recurring Events/Weekly/Tuesday Morning Training Run.md",
+    "3 Resources/Events/Recurring Events/Yearly/Rescue Run.md",
+    "3 Resources/Events/Recurring Events/Monthly/Household - Clean and Organize a Unit.md",
+    "3 Resources/Events/Recurring Events/Monthly/Couples Date Night.md",
+    "3 Resources/Events/Recurring Events/Weekly/Meeting with Sponsor.md",
+    "3 Resources/Events/Recurring Events/Weekly/Physical Therapy  (4pm actual).md",
+    "3 Resources/Events/Recurring Events/Weekly/Thursday Morning Training Run.md",
+    "3 Resources/Events/Past Events/Estes Park Marathon.md",
+    "3 Resources/Persons/S - T/Steven Bartlett/Steven Bartlett.md",
+    "3 Resources/Persons/K - M/Lex Fridman/Lex Fridman.md",
+    "3 Resources/Persons/S - T/Steven Bartlett",
+    "3 Resources/Persons/K - M/Lex Fridman",
+    "3 Resources/Persons/A - C/Andrej Karpathy/Andrej Karpathy.md",
+    "3 Resources/Persons/G - J/Geoffrey Hinton/Geoffrey Hinton.md",
+    "3 Resources/Persons/A - C/Andrej Karpathy",
+    "3 Resources/Persons/G - J/Geoffrey Hinton",
+    "3 Resources/Persons/U - Z",
+    "3 Resources/Persons/S - T",
+    "3 Resources/Persons/Q - R",
+    "3 Resources/Persons/O - P",
+    "3 Resources/Persons/N - R",
+    "3 Resources/Persons/K - M",
+    "3 Resources/Events/Cancelled Events/2024 Barr Trail Mountain Race.md",
+    "3 Resources/Events/Recurring Events/Yearly/Wedding Anniversary.md",
+    "3 Resources/Events/Recurring Events/Yearly/Veteran's Day.md",
+    "2026-06-08.md",
+    "3 Resources/Events/Past Events/Run Through Time Marathon, Salida.md"
+  ]
+}
