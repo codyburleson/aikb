@@ -120,7 +120,7 @@ File: `3 Resources/Persons/J - L/John Smith/John Smith.md`
 
 ```yaml
 ---
-template: "[[Person Template]]"
+type: "[[Person Template]]"
 tags:
   - type/person
 givenName: John
@@ -170,7 +170,7 @@ File: `3 Resources/Persons/A - C/Andrej Karpathy/Andrej Karpathy.md`
 
 ```yaml
 ---
-template: "[[Person Template]]"
+type: "[[Person Template]]"
 tags:
   - type/person
 givenName: Andrej
@@ -277,7 +277,7 @@ File: `3 Resources/Events/Recurring Events/Weekly/Meeting with Sponsor.md`
 
 ```yaml
 ---
-template: "[[Event Template]]"
+type: "[[Event Template]]"
 tags:
   - type/event
 eventName: Meeting with Sponsor
@@ -324,7 +324,7 @@ File: `3 Resources/Events/Current and Future Events/ACME Kickoff Meeting.md`
 
 ```yaml
 ---
-template: "[[Event Template]]"
+type: "[[Event Template]]"
 tags:
   - type/event
 eventName: ACME Project Kickoff
@@ -426,7 +426,7 @@ File: `3 Resources/Projects/AIKB Specification Development.md`
 
 ```yaml
 ---
-template: "[[Project Template]]"
+type: "[[Project Template]]"
 tags:
   - type/project
 projectName: AIKB Specification Development
@@ -643,7 +643,7 @@ Notes (5):
 **Before** (`John Smith.md`):
 ```yaml
 ---
-template: "[[Person Template]]"
+type: "[[Person Template]]"
 tags:
   - type/person
 givenName: John
@@ -666,7 +666,7 @@ Would you like me to add these to the frontmatter?"
 **After** (user approves):
 ```yaml
 ---
-template: "[[Person Template]]"
+type: "[[Person Template]]"
 tags:
   - type/person
 givenName: John

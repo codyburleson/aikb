@@ -1,7 +1,7 @@
 ---
 startDate:
 endDate:
-template: "[[Event Template]]"
+template: "[[Event Template.md]]"
 recurMonth: November
 recurDay: "5"
 ---

@@ -21,9 +21,6 @@ This Capstone Project, part of the [5-Day AI Agents Intensive Course with Google
 - **Agent Base** - a core set of interoperable and autonomous agents that implement various AIKB use cases.
   - For the purpose of the Capstone Project, the scope of AI software and services has centered around the use of Google's Agent Development Kit and the Google Cloud Platform, though, as a matters of principle, we seek to keep this solution open to community contribution, open source, based on open standards, flexible and free of vendor lock-in.
   - 🚧 Agent Base (in development)
-- **CLI (or MCP servers for the Gemini CLI)** - a command line interface enabling users to interact with agents and resources in their personal "knowledge vault" via text input, shell scripts, and Python. (in development)
-- **Obsidian Plugin** - a chat user interface plugin enabling Obsidian users to manage their notebook and knowledge with support from AIKB's agents and popular language models.
-  - 📋 Obsidian Plugin (planned)
 
 ## What Can AIKB Do?
 
