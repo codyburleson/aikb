@@ -1,26 +1,19 @@
 # Agent-Interoperable Knowledge Base (AIKB)
 
-> Transform your personal knowledge into an AI-ready ecosystem where multiple agents can understand, organize, and enhance your notes.
-
-Ever wished your AI assistants could actually understand your Obsidian vault? Or that different AI tools could work together on your personal knowledge base? AIKB makes this possible.
+<p>
+<strong>Ready to level-up your personal knowledge management?</strong><br>
+Transform your notes into an AI-ready ecosystem where multiple agents work together to understand, organize, and enhance your thinking.
+</p>
 
 ![Status](https://img.shields.io/badge/Status-Alpha-yellow)
-![License](https://img.shields.io/badge/License-MIT-green)
+![License](https://img.shields.io/badge/License-CC%20BY%E2%88%92SA%204.0-green)
 ![Course](https://img.shields.io/badge/Google_AI_Agents-Capstone-blue)
 
-**🚧 This is a [Capstone Project](https://www.kaggle.com/competitions/agents-intensive-capstone-project) in active development**
+As our [Capstone Project](https://www.kaggle.com/competitions/agents-intensive-capstone-project) for the [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents) we present a novel approach to personal knowledge management (PKM) in a system comprised of the following parts:
 
-This Capstone Project, part of the [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents) proposes and demonstrates a novel approach to personal knowledge management (PKM) in a system comprised of the following parts:
-
-- **[The AIKB Specification (Working Draft)](./specs/aikb-0.1.md)**: A proposal for a set of formal standards and guidelines to enable agent interoperability with personal knowledge management systems (PKMs).
-  - For the purpose of the Capstone Project, the scope has been limited to PKMs comprised of locally sourced markdown documents and media files, which can be easily managed by users using freely available and cross-platform tools like [Obsidian](https://obsidian.md/), [Visual Studio Code](https://code.visualstudio.com/), standard OS features and widely available text editors.
-  - 🚧 AIKB Specification Draft v0.1 (in development)
-- **Reference Vault**: A repository of markdown document templates implementing metadata standards, comprehensive guidelines ("Principles, Patterns, and Practices for Knowledge Management"), and example documents that demonstrate the standards in practice.
-  - The reference vault is hosted publicly on GitHub and intended for access by users and agents.
-  - 🚧 Reference Vault (coming soon)
-- **Agent Base** - a core set of interoperable and autonomous agents that implement various AIKB use cases.
-  - For the purpose of the Capstone Project, the scope of AI software and services has centered around the use of Google's Agent Development Kit and the Google Cloud Platform, though, as a matters of principle, we seek to keep this solution open to community contribution, open source, based on open standards, flexible and free of vendor lock-in.
-  - 🚧 Agent Base (in development)
+- **[The AIKB Specification (Working Draft)](https://github.com/codyburleson/aikb/blob/main/docs/aikb-spec.md)**: Proposed standards and guidelines to enable agent interoperability with personal knowledge management systems (PKMs).
+- **[Reference Vault](https://github.com/codyburleson/aikb/tree/main/reference-vault)**: A knowledge base repository with templates, schemas, knowledge documents, and other knowledge artifacts demonstrating our proposed standards in practice. Use this as a starting point for your own knowledge base and to test the agents. We recommend using [Obsidian](https://obsidian.md/) to manage your knowledge vault, but any other tool that can read and write markdown files will work.
+- **[Agent Base](https://github.com/codyburleson/aikb/tree/main/src)**: Executable source code for a core set of interoperable agents implementing various AIKB use cases.
 
 ## What Can AIKB Do?
 
@@ -31,8 +24,6 @@ Imagine asking your AI assistant:
 - etc.
 - etc.
 
-...and having it work across ALL your AI tools, not just one.
-
 ### Example Use Case
 
 ```yaml
@@ -41,28 +32,100 @@ Agent: Analyzes 7 daily notes following AIKB metadata standards
 Output: Structured weekly summary with trends, achievements, and action items
 ```
 
-## Project Status
+## Getting Started
 
-This is a **proof of concept** developed for the Google AI Agents Intensive Course.
+### Prerequisites
 
-- [ ] Core specification drafted
-- [ ] Conceptual framework defined
-- [ ] Reference implementation
-- [ ] CLI tool functional
-- [ ] Community feedback incorporated
-- [ ] Production-ready release
+- **Python 3.8 or higher** - [Download Python](https://www.python.org/downloads/)
+- **Google AI API Key** - [Get your free API key](https://ai.google.dev/)
 
-## Installation
+### Quick Setup (5 minutes)
 
-(Coming soon - currently in development)
+1. **Clone the repository**
 
-## Contributing
+   With HTTPS:
+   ```bash
+   git clone https://github.com/codyburleson/aikb.git
+   ```
 
-We welcome feedback on the specification! See [CONTRIBUTING.md](./CONTRIBUTING.md)
+   ...or SSH:
+   ```bash
+   git clone git@github.com:codyburleson/aikb.git
+   ```
 
-## License
+   Change into the project directory:
+   ```bash
+   cd aikb
+   ```
 
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) Attribution-ShareAlike 4.0 International
+2. **Create a Python virtual environment**
+   ```bash
+   # Create virtual environment
+   python -m venv .venv
+
+   # Activate it (macOS/Linux)
+   source .venv/bin/activate
+
+   # Or on Windows
+   .venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set up your API key**
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+
+   # Edit the .env file and add your Google AI API key
+   # You can use any text editor, for example:
+   nano .env
+   ```
+
+   Replace `your_api_key_here` with your actual API key from [Google AI Studio](https://ai.google.dev/).
+
+5. **Run the agent**
+   ```bash
+   cd src
+   python agent.py
+   ```
+
+That's it! You should see the agent start up and you can begin chatting with it.
+
+### Example Session
+
+```
+🤖 Initializing AIKB Agent ...
+📚 Knowledge Base Detected: 29 Markdown files found in './reference-vault'
+📝 Creating new session: session_01...
+✨ Connected! (Memory & Session Active)
+Enter your commands ("quit" to exit).
+
+You: What can you do?
+Agent: I can help you with a few things:
+
+*   **Tell time**: I can tell you the current time in any specified city.
+*   **Remember past conversations**: I can recall information from our previous discussions.
+*   **Search your Knowledge Vault**: I can search your local reference vault for information on specific topics, people, or projects.
+*   **Create notes**: I can create new Markdown files in your reference vault to save summaries, meeting notes, or ideas.
+```
+
+### Troubleshooting
+
+**Problem: `ModuleNotFoundError`**
+- Make sure your virtual environment is activated
+- Run `pip install -r requirements.txt` again
+
+**Problem: API key not working**
+- Verify your API key is correctly copied into `.env` (in the project root)
+- Make sure there are no extra spaces or quotes around the key
+
+**Problem: Can't find reference vault**
+- The agent expects a `reference-vault` folder in the project root
+- Create one if needed: `mkdir reference-vault`
 
 ## Acknowledgments
 

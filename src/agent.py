@@ -7,6 +7,10 @@ from google.adk.tools import load_memory  # <--- The tool that lets the agent RE
 from google.genai import types
 import asyncio
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 #GLOBAL CACHE
@@ -176,7 +180,7 @@ async def main():
     )
 
     print("✨ Connected! (Memory & Session Active)")
-    print("Enter your commands (Ctrl+C to exit).")
+    print('Enter your commands ("quit" to exit).')
 
     # Chat Loop
     while True:
