@@ -59,7 +59,7 @@ In the `.env` file, replace:
 GOOGLE_API_KEY=your_api_key_here
 ```
 
-with your actual API key from [Google AI Studio](https://ai.google.dev/).
+with your actual API key from [Google AI Studio](https://aistudio.google.com/api-keys).
 
 ### 6. Run the Agent
 
