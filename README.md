@@ -34,66 +34,7 @@ Output: Structured weekly summary with trends, achievements, and action items
 
 ## Getting Started
 
-### Prerequisites
-
-- **Python 3.8 or higher** - [Download Python](https://www.python.org/downloads/)
-- **Google AI API Key** - [Get your free API key](https://ai.google.dev/)
-
-### Quick Setup (5 minutes)
-
-1. **Clone the repository**
-
-   With HTTPS:
-   ```bash
-   git clone https://github.com/codyburleson/aikb.git
-   ```
-
-   ...or SSH:
-   ```bash
-   git clone git@github.com:codyburleson/aikb.git
-   ```
-
-   Change into the project directory:
-   ```bash
-   cd aikb
-   ```
-
-2. **Create a Python virtual environment**
-   ```bash
-   # Create virtual environment
-   python -m venv .venv
-
-   # Activate it (macOS/Linux)
-   source .venv/bin/activate
-
-   # Or on Windows
-   .venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Set up your API key**
-   ```bash
-   # Copy the example environment file
-   cp .env.example .env
-
-   # Edit the .env file and add your Google AI API key
-   # You can use any text editor, for example:
-   nano .env
-   ```
-
-   Replace `your_api_key_here` with your actual API key from [Google AI Studio](https://ai.google.dev/).
-
-5. **Run the agent**
-   ```bash
-   cd src
-   python agent.py
-   ```
-
-That's it! You should see the agent start up and you can begin chatting with it.
+> 🚀 **Want to get started immediately?** Check out our [QUICKSTART.md](QUICKSTART.md) for a streamlined setup process!
 
 ### Example Session
 
@@ -115,17 +56,49 @@ Agent: I can help you with a few things:
 
 ### Troubleshooting
 
-**Problem: `ModuleNotFoundError`**
-- Make sure your virtual environment is activated
-- Run `pip install -r requirements.txt` again
+**Problem: `ModuleNotFoundError: No module named 'google'`**
+
+This means you haven't installed the dependencies in your virtual environment yet.
+
+**Solution:**
+```bash
+# Make sure virtual environment is activated
+source .venv/bin/activate  # macOS/Linux
+# or
+.venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+**Problem: Dependencies seem installed but script still fails**
+
+You might be running Python from outside the virtual environment.
+
+**Solution:**
+```bash
+# Verify you're in the project root directory
+pwd  # Should show path ending in '/aikb'
+
+# Use the convenience script which handles activation
+./run_agent.sh
+```
 
 **Problem: API key not working**
 - Verify your API key is correctly copied into `.env` (in the project root)
 - Make sure there are no extra spaces or quotes around the key
+- Ensure the file is named exactly `.env` (not `.env.txt`)
 
 **Problem: Can't find reference vault**
 - The agent expects a `reference-vault` folder in the project root
 - Create one if needed: `mkdir reference-vault`
+
+**Problem: "Permission denied" when running ./run_agent.sh**
+
+**Solution:**
+```bash
+chmod +x run_agent.sh
+```
 
 ## Acknowledgments
 

@@ -46,20 +46,21 @@ pip install -r requirements.txt
 2. Fill in your real API keys in `.env`
 3. The `.gitignore` file prevents `.env` from being committed
 
-## 🚀 start.sh
+## 🚀 run_agent.sh
 
 **What it is:** A convenience script to start your agent with safety checks.
 
 **Why you need it:** Instead of remembering all the commands, just run:
 ```bash
-./start.sh
+./run_agent.sh
 ```
 
 It automatically:
 - Checks if virtual environment exists
-- Activates the virtual environment
+- Activates the virtual environment if needed
+- Verifies dependencies are installed
 - Checks if .env file is configured
-- Runs the main agent
+- Runs the main agent from the correct directory
 
 ## 📦 Virtual Environment (.venv)
 
@@ -78,6 +79,9 @@ python -m venv .venv
 # Activate it (every time you work on the project)
 source .venv/bin/activate  # macOS/Linux
 .venv\Scripts\activate     # Windows
+
+# Install dependencies (critical!)
+pip install -r requirements.txt
 
 # Deactivate when done
 deactivate
@@ -103,7 +107,7 @@ This makes your project cleaner and more professional.
 | `pyproject.toml` | Project configuration | ✅ Yes |
 | `.env.example` | Template for secrets | ✅ Yes |
 | `.env` | Your actual secrets | ❌ NO! |
-| `start.sh` | Convenience script | ✅ Yes |
+| `run_agent.sh` | Convenience script | ✅ Yes |
 | `.venv/` | Virtual environment | ❌ No (too large) |
 | `src/` | Your source code | ✅ Yes |
 
@@ -117,13 +121,60 @@ pip install -r requirements.txt
 cp .env.example .env
 # (edit .env with your API key)
 
-# Run the main agent
-./start.sh
+# Run the agent (recommended)
+./run_agent.sh
 
 # Or manually
-cd src
-python agent.py
+python src/agent.py
 
 # Update dependencies after adding new packages
 pip freeze > requirements.txt
+```
+
+## 🔧 Troubleshooting
+
+### "ModuleNotFoundError: No module named 'google'"
+
+**Cause:** You forgot to install dependencies or the virtual environment isn't activated.
+
+**Solution:**
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### "No such file or directory: .venv/bin/activate"
+
+**Cause:** Virtual environment doesn't exist yet.
+
+**Solution:**
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Dependencies installed but script still fails
+
+**Cause:** You might have installed dependencies globally instead of in the virtual environment.
+
+**Solution:**
+```bash
+# Verify venv is activated (should show .venv path)
+which python
+
+# If not in venv, activate it
+source .venv/bin/activate
+
+# Reinstall dependencies in the venv
+pip install -r requirements.txt
+```
+
+### "Permission denied: ./run_agent.sh"
+
+**Cause:** The script doesn't have execute permissions.
+
+**Solution:**
+```bash
+chmod +x run_agent.sh
 ```
