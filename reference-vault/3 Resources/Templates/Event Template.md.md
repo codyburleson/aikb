@@ -1,5 +1,5 @@
 ---
-template: "[[Event Template]]"
+template: "[[Event Template.md]]"
 startDate:
 endDate:
 startTime:

@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 292.5
+    "width": 375.5
   },
   "right": {
     "id": "7a366235aa8f53d5",
@@ -171,7 +171,10 @@
   },
   "active": "4597a39ab422c633",
   "lastOpenFiles": [
-    "3 Resources/Templates/Event Template.md",
+    "3 Resources/Tasks/Completed or Closed Tasks",
+    "3 Resources/Tasks/Open Tasks",
+    "3 Resources/Tasks",
+    "3 Resources/Templates/Event Template.md.md",
     "3 Resources/Templates/Person Template.md",
     "CHANGELOG.md",
     "README.md",
@@ -200,12 +203,9 @@
     "3 Resources/Persons/S - T",
     "3 Resources/Persons/Q - R",
     "3 Resources/Persons/O - P",
-    "3 Resources/Persons/N - R",
-    "3 Resources/Persons/K - M",
     "3 Resources/Events/Cancelled Events/2024 Barr Trail Mountain Race.md",
     "3 Resources/Events/Recurring Events/Yearly/Wedding Anniversary.md",
     "3 Resources/Events/Recurring Events/Yearly/Veteran's Day.md",
-    "2026-06-08.md",
-    "3 Resources/Events/Past Events/Run Through Time Marathon, Salida.md"
+    "2026-06-08.md"
   ]
 }
