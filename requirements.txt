@@ -1,0 +1,11 @@
+# Google AI Development Kit
+google-adk>=0.1.0
+
+# Google GenAI
+google-genai
+
+# Environment variable management
+python-dotenv
+
+# Async support (usually included with Python 3.7+, but explicit is better)
+asyncio
