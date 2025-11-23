@@ -1,5 +1,6 @@
 {
   "propertiesInDocument": "visible",
   "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "./attachments"
+  "attachmentFolderPath": "./attachments",
+  "showInlineTitle": false
 }

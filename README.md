@@ -58,3 +58,10 @@ Agent: I can help you with a few things:
 
 - [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents)
 - [Obsidian](https://obsidian.md/) community for PKM inspiration
+
+## Want to Know More?
+
+Here are some additional resources to help you get started:
+
+- [Developer Guide](docs/developer-guide/developer-guide.md)
+- [Obsidian Guide](docs/obsidian-guide/obsidian-guide.md)

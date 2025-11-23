@@ -4,7 +4,7 @@ type: "[[CreativeWork]]"
 tags:
   - type/CreativeWork
   - type/CreativeWork/Book
-  - about/ArtificialIntelligence
+  - about/AI
   - type/CreativeWork/Book/Audiobook
 created:
 updated:
