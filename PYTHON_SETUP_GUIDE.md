@@ -125,7 +125,7 @@ cp .env.example .env
 ./run_agent.sh
 
 # Or manually
-python src/agent.py
+python -m src.agent
 
 # Update dependencies after adding new packages
 pip freeze > requirements.txt

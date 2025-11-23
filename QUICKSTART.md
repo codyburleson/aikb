@@ -76,7 +76,7 @@ chmod +x run_agent.sh
 
 **Manual way:**
 ```bash
-python src/agent.py
+python -m src.agent
 ```
 
 ## Verify It's Working

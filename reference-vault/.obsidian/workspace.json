@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "dbe6f85a19d65462",
+        "id": "357b85080eee11ac",
         "type": "tabs",
         "children": [
           {
-            "id": "88f3dcac48c9dd49",
+            "id": "797ed29821abb519",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3 Resources/Templates/Place.md",
+                "file": "0 Inbox/AIKB Markdown Ops Test Note.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Place"
+              "title": "AIKB Markdown Ops Test Note"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#type/CreativeWork/Book/Audiobook",
+                "query": "tag:#type/CreativeWork/Book",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3 Resources/Templates/Place.md",
+                "file": "3 Resources/Creative Works/Patterns/Patterns for PKM/Patterns for PKM.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Place"
+              "title": "Backlinks for Patterns for PKM"
             }
           },
           {
@@ -170,43 +170,43 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "88f3dcac48c9dd49",
+  "active": "797ed29821abb519",
   "lastOpenFiles": [
-    "3 Resources/Templates/Person.md",
-    "3 Resources/Templates/Organization.md",
+    "0 Inbox/AIKB Markdown Ops Test Note.md",
+    "3 Resources/Persons/A - C/Andrej Karpathy.md",
+    "0 Inbox/2025-11-23.md",
+    "Inbox/2025-11-23 Meeting Notes 2.md",
+    "Inbox/Meeting Notes.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/Patterns for PKM.md",
+    "Inbox",
+    "0 Inbox/test_verification_note.md",
+    "0 Inbox",
+    "Inbox/Agent Test.md",
+    "Verification/test_verification_note.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/Pattern 1.md",
+    "3 Resources/Templates/Pattern.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM",
+    "3 Resources/Creative Works/Patterns",
     "3 Resources/Templates/CreativeWork.md",
-    "3 Resources/Creative Works/Books/The Worlds I See.md",
-    "3 Resources/Templates/DailyNote.md",
-    "3 Resources/Templates/Event.md",
+    "3 Resources/Templates/Organization.md",
     "3 Resources/Templates/Place.md",
-    "3 Resources/Templates/Project.md",
     "3 Resources/Templates/Task.md",
-    "3 Resources/Creative Works/Books/Superintelligence.md",
-    "3 Resources/Creative Works/Books/Genius Makers.md",
+    "3 Resources/Templates/Project.md",
+    "3 Resources/Templates/Person.md",
+    "3 Resources/Templates/Event.md",
+    "3 Resources/Templates/DailyNote.md",
+    "3 Resources/Persons/S - T/Steven Bartlett.md",
     "3 Resources/Persons/N - P/Nick Bostrom.md",
     "3 Resources/Persons/N - P",
-    "3 Resources/Persons/A - C/Cade Metz.md",
-    "about ArtificialIntelligence.md",
-    "3 Resources/Persons/E - F/Fei-Fei Li.md",
-    "3 Resources/Persons/A - C/Andrej Karpathy.md",
     "3 Resources/Persons/G - J/Geoffrey Hinton.md",
-    "3 Resources/Persons/S - T/Steven Bartlett.md",
+    "3 Resources/Persons/E - F/Fei-Fei Li.md",
     "3 Resources/Persons/E - F",
-    "3 Resources/Events/Recurring Events/Yearly/Rescue Run.md",
-    "3 Resources/Creative Works/Software Applications",
+    "3 Resources/Persons/A - C/Cade Metz.md",
+    "3 Resources/Creative Works/Books/Superintelligence.md",
+    "3 Resources/Creative Works/Books/The Worlds I See.md",
     "3 Resources/Creative Works/Books",
-    "3 Resources/Events/Recurring Events/Weekly/Meeting with Sponsor.md",
-    "3 Resources/Events/Recurring Events/Weekly/Tuesday Morning Training Run.md",
-    "3 Resources/Events/Recurring Events/Monthly/Couples Date Night.md",
-    "3 Resources/Events/Recurring Events/Yearly/Wedding Anniversary.md",
-    "3 Resources/Events/Recurring Events/Yearly/Veteran's Day.md",
-    "3 Resources/Events/Recurring Events/Monthly/Household - Clean and Organize a Unit.md",
-    "3 Resources/Events/Past Events/Run Through Time Marathon, Salida.md",
-    "4 Archive",
-    "2 Areas",
-    "1 Projects",
-    "3 Resources/Daily Notes",
     "3 Resources/Creative Works",
-    "3 Resources/Organizations"
+    "3 Resources/Persons/S - T/Steven Bartlett",
+    "3 Resources/Persons/K - M/Lex Fridman"
   ]
 }
