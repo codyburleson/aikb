@@ -5,7 +5,7 @@ tags:
   - type/Person
 created:
 updated:
-birthDate:
-memberOf:
+birthDate: 1973-03-10
+"":
 ---
 
