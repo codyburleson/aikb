@@ -6,6 +6,9 @@ We recommend the following plugins for AIKB-conformant knowledge vaults. The AIK
 
 - In Obsidian, go to Settings > Community plugins: Turn on community plugins
 - Restricted mode: Turn on and reload
+- Files and links > Default location for new attachments: In subfolder under current folder (e.g., vault/folder/attachments)
 - Community plugins: Browse
 - Search the following plugins, install and enable each:
   - Tag Wrangler, by [PJ Eby](https://github.com/pjeby)
+  - Templater, by [SilentVoid](https://github.com/SilentVoid13)
+    - Template folder location: 3 Resources/Templates

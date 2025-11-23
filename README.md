@@ -54,52 +54,6 @@ Agent: I can help you with a few things:
 *   **Create notes**: I can create new Markdown files in your reference vault to save summaries, meeting notes, or ideas.
 ```
 
-### Troubleshooting
-
-**Problem: `ModuleNotFoundError: No module named 'google'`**
-
-This means you haven't installed the dependencies in your virtual environment yet.
-
-**Solution:**
-```bash
-# Make sure virtual environment is activated
-source .venv/bin/activate  # macOS/Linux
-# or
-.venv\Scripts\activate     # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-**Problem: Dependencies seem installed but script still fails**
-
-You might be running Python from outside the virtual environment.
-
-**Solution:**
-```bash
-# Verify you're in the project root directory
-pwd  # Should show path ending in '/aikb'
-
-# Use the convenience script which handles activation
-./run_agent.sh
-```
-
-**Problem: API key not working**
-- Verify your API key is correctly copied into `.env` (in the project root)
-- Make sure there are no extra spaces or quotes around the key
-- Ensure the file is named exactly `.env` (not `.env.txt`)
-
-**Problem: Can't find reference vault**
-- The agent expects a `reference-vault` folder in the project root
-- Create one if needed: `mkdir reference-vault`
-
-**Problem: "Permission denied" when running ./run_agent.sh**
-
-**Solution:**
-```bash
-chmod +x run_agent.sh
-```
-
 ## Acknowledgments
 
 - [5-Day AI Agents Intensive Course with Google (Nov 10 - 14, 2025)](https://www.kaggle.com/learn-guide/5-day-agents)
