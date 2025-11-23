@@ -148,6 +148,12 @@ The following entity types are defined as core entity types and available in the
 
 The most generic kind of creative work, including books, movies, photographs, software programs, etc.
 
+- More specific Types of CreativeWork MAY be defined as templates
+- More specific Types of CreativeWork MUST be tagged with `type/CreativeWork/<SpecificTypeName>` in templates
+- More specific Types of CreativeWork MAY be tagged with `type/CreativeWork/<SpecificTypeName>` in instances
+
+For more specific Types of CreativeWork, see [Schema.org](https://schema.org/CreativeWork).
+
 ##### DailyNote:
 
 A document created on a given day for recording general notes and observations about the day or throughout the day (e.g. a journal entry, a working scratchpad for meeting notes, to-do lists, etc.).
@@ -359,6 +365,7 @@ The following properties are applicable across entity types and SHOULD be includ
 
 | Property | Type | Description | Format |
 |----------|------|-------------|--------|
+| `name` | string | The name of the item | string |
 | `type` | string | Template reference | `[[Template Name]]` |
 | `tags` | array | Classification tags | Array of strings |
 | `created` | string | Creation timestamp | ISO 8601 date-time |

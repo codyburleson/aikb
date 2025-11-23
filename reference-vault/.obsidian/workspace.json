@@ -11,14 +11,10 @@
             "id": "88f3dcac48c9dd49",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3 Resources/Templates/Person Template.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Person Template"
+              "title": "New tab"
             }
           }
         ]
@@ -53,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "[birthday]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Welcome"
+              "title": "Backlinks"
             }
           },
           {
@@ -151,12 +146,12 @@
               "title": "Outline of Welcome"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 525.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -171,41 +166,41 @@
   },
   "active": "4597a39ab422c633",
   "lastOpenFiles": [
+    "3 Resources/Events/Recurring Events/Weekly/Meeting with Sponsor.md",
+    "3 Resources/Events/Recurring Events/Weekly/Tuesday Morning Training Run.md",
+    "3 Resources/Events/Recurring Events/Monthly/Couples Date Night.md",
+    "3 Resources/Events/Recurring Events/Yearly/Wedding Anniversary.md",
+    "3 Resources/Events/Recurring Events/Yearly/Veteran's Day.md",
+    "3 Resources/Events/Recurring Events/Yearly/Rescue Run.md",
+    "3 Resources/Events/Recurring Events/Monthly/Household - Clean and Organize a Unit.md",
+    "3 Resources/Events/Past Events/Run Through Time Marathon, Salida.md",
+    "3 Resources/Events/Past Events/Estes Park Marathon.md",
+    "3 Resources/Events/Current and Future Events/Staunton Rocks! Marathon & Half.md",
+    "3 Resources/Events/Current and Future Events/Georgetown Slacker Half Marathon.md",
+    "3 Resources/Events/Current and Future Events/Garden of the God's Trail Run.md",
+    "3 Resources/Events/Current and Future Events/Blake and Sydney's Wedding.md",
+    "3 Resources/Events/Current and Future Events/Barr Trail Mountain Race.md",
+    "3 Resources/Events/Current and Future Events/Barr Camp and Pike's Peak Ascent.md",
+    "3 Resources/Events/Cancelled Events/2024 Barr Trail Mountain Race.md",
+    "3 Resources/Events/Cancelled Events/Cancelled Events.md",
+    "3 Resources/Templates/Event.md",
+    "3 Resources/Templates/Task.md",
+    "3 Resources/Templates/Project.md",
+    "3 Resources/Templates/Place.md",
+    "3 Resources/Templates/Person.md",
+    "3 Resources/Templates/Organization.md",
+    "3 Resources/Templates/DailyNote.md",
+    "3 Resources/Templates/CreativeWork.md",
+    "3 Resources/Persons/A - C/Andrej Karpathy/Andrej Karpathy.md",
+    "4 Archive",
+    "2 Areas",
+    "1 Projects",
+    "3 Resources/Daily Notes",
+    "3 Resources/Creative Works",
+    "3 Resources/Organizations",
     "3 Resources/Tasks/Completed or Closed Tasks",
     "3 Resources/Tasks/Open Tasks",
     "3 Resources/Tasks",
-    "3 Resources/Templates/Event Template.md.md",
-    "3 Resources/Templates/Person Template.md",
-    "CHANGELOG.md",
-    "README.md",
-    "Specifications.md",
-    "3 Resources/Events/Recurring Events/Recurring Events.md",
-    "3 Resources/Events/Past Events/Past Events.md",
-    "3 Resources/Events/Current and Future Events/Current and Future Events.md",
-    "3 Resources/Events/Cancelled Events/Cancelled Events.md",
-    "3 Resources/Events/Recurring Events/Weekly/Tuesday Morning Training Run.md",
-    "3 Resources/Events/Recurring Events/Yearly/Rescue Run.md",
-    "3 Resources/Events/Recurring Events/Monthly/Household - Clean and Organize a Unit.md",
-    "3 Resources/Events/Recurring Events/Monthly/Couples Date Night.md",
-    "3 Resources/Events/Recurring Events/Weekly/Meeting with Sponsor.md",
-    "3 Resources/Events/Recurring Events/Weekly/Physical Therapy  (4pm actual).md",
-    "3 Resources/Events/Recurring Events/Weekly/Thursday Morning Training Run.md",
-    "3 Resources/Events/Past Events/Estes Park Marathon.md",
-    "3 Resources/Persons/S - T/Steven Bartlett/Steven Bartlett.md",
-    "3 Resources/Persons/K - M/Lex Fridman/Lex Fridman.md",
-    "3 Resources/Persons/S - T/Steven Bartlett",
-    "3 Resources/Persons/K - M/Lex Fridman",
-    "3 Resources/Persons/A - C/Andrej Karpathy/Andrej Karpathy.md",
-    "3 Resources/Persons/G - J/Geoffrey Hinton/Geoffrey Hinton.md",
-    "3 Resources/Persons/A - C/Andrej Karpathy",
-    "3 Resources/Persons/G - J/Geoffrey Hinton",
-    "3 Resources/Persons/U - Z",
-    "3 Resources/Persons/S - T",
-    "3 Resources/Persons/Q - R",
-    "3 Resources/Persons/O - P",
-    "3 Resources/Events/Cancelled Events/2024 Barr Trail Mountain Race.md",
-    "3 Resources/Events/Recurring Events/Yearly/Wedding Anniversary.md",
-    "3 Resources/Events/Recurring Events/Yearly/Veteran's Day.md",
-    "2026-06-08.md"
+    "3 Resources/Persons/S - T/Steven Bartlett"
   ]
 }
