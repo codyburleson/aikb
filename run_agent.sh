@@ -37,4 +37,4 @@ fi
 
 # Run the agent from project root (so relative paths work correctly)
 cd "$PROJECT_ROOT"
-python src/agent.py
+python -m src.agent

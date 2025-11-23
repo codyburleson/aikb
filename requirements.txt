@@ -9,3 +9,6 @@ python-dotenv
 
 # Async support (usually included with Python 3.7+, but explicit is better)
 asyncio
+
+# Markdown Processing
+python-frontmatter

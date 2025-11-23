@@ -115,26 +115,26 @@ def create_knowledge_note(filename: str, content: str, folder: str = "Inbox") ->
         return {"status": "error", "message": str(e)}
 
 
+from src.tools.markdown_ops import read_markdown, create_markdown, update_frontmatter, update_content
+
+# ... (existing imports)
+
 # --- Agent Definition ---
 root_agent = LlmAgent(
     model='gemini-2.5-flash',
     name='root_agent',
     description="Tells the current time and remembers user details.",
     # Updated instructions to tell the agent to use memory
-    instruction=(
-        "You are the AIKB (Agent-Interoperable Knowledge Base) Assistant. "
-            "Your goal is to help the user manage their Knowledge Vault.\n\n"
-            "OPERATIONAL MANUAL:\n"
-            "1. **TIME CHECKING**: Want to Know Time of any City ? \n"
-            "2. **MEMORY RECALL**: Remember past conversation .\n"
-            "3. **READING KNOWLEDGE**: If the user asks about specific topics, people (like Geoffrey Hinton), or projects stored in their files, "
-            "use `search_knowledge_vault`. \n"
-            "   - *Tip:* Hey Search for specific keywords (e.g., 'Hinton') rather than full sentences.\n"
-            "4. **WRITING NOTES**: If the user asks to save a summary, meeting note, or idea, use `create_knowledge_note`. \n"
-            "   - *Format:* Ensure the content is written in clean Markdown.\n"
-    ),
+    instruction="\n".join([
+        "You are a helpful AI assistant managing a personal knowledge base.",
+        "The knowledge base is a collection of Markdown files in a 'reference-vault' directory.",
+        "You can search for notes, read them, create new ones, and update them.",
+        "When asked to update a note's content, read it first, then rewrite the content as needed and use the update_content tool.",
+        "Always check if a file exists before trying to read or update it.",
+        "Use the 'Inbox' folder for new notes unless specified otherwise."
+    ]),
     # Add load_memory to the tools list so the agent can use it
-    tools=[get_current_time, load_memory, search_knowledge_vault, create_knowledge_note],
+    tools=[get_current_time, load_memory, search_knowledge_vault, create_markdown, read_markdown, update_frontmatter, update_content],
 )
 
 # --- Execution Logic (Only runs when you execute this file directly) ---
