@@ -12,17 +12,24 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-
 #GLOBAL CACHE
 _VAULT_CACHE = {}
 
 # --- Tool Definitions ---
-#testing tool to get current time
+# A tool to get "current" (hard-coded) time for simple agent tool testing
 def get_current_time(city: str) -> dict:
     """Returns the current time in a specified city."""
     return {"status": "success", "city": city, "time": "10:30 AM"}
 
-# Knowledge Base Tool to search and read reference vaults
+#######################################################################################
+# KB Tool to search and read reference vaults
+# -------------------------------------------------------------------------------------
+#
+# Appears to read all content into memory, which is not ideal for large vaults.
+# We'll need to improve this in the future. Also walks and we already walk on startup,
+# so we can probably optimize down to one walk that does some sort of indexing, or
+# better yet, maybe only by entity type as we converse with the agent.
+#######################################################################################
 def search_knowledge_vault(query: str) -> dict:
     """
     Searches local reference vault folder for markdown files.
@@ -79,40 +86,6 @@ def search_knowledge_vault(query: str) -> dict:
     return {"status": "success", "results": results}
 
 
-# --- 3. Note Creation Tool (Writer) ---
-def create_knowledge_note(filename: str, content: str, folder: str = "Inbox") -> dict:
-    """
-    Creates a new Markdown file in the reference vault.
-    """
-    base_path = "./reference-vault"
-    target_dir = os.path.join(base_path, folder)
-
-    if not filename.endswith(".md"):
-        filename += ".md"
-
-    if not os.path.exists(target_dir):
-        try:
-            os.makedirs(target_dir)
-        except OSError as e:
-            return {"status": "error", "message": f"Could not create folder: {e}"}
-
-    file_path = os.path.join(target_dir, filename)
-
-    try:
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(content)
-
-        # OPTIONAL: Pre-load into cache so it's immediately searchable
-        global _VAULT_CACHE
-        _VAULT_CACHE[file_path] = {
-            "mtime": os.path.getmtime(file_path),
-            "content": content
-        }
-
-        print(f"   [Tool: Created new note at '{file_path}']")
-        return {"status": "success", "file_path": file_path, "message": "Note created successfully."}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
 
 
 from src.tools.markdown_ops import read_markdown, create_markdown, update_frontmatter, update_content
@@ -134,17 +107,44 @@ root_agent = LlmAgent(
         "Use the 'Inbox' folder for new notes unless specified otherwise."
     ]),
     # Add load_memory to the tools list so the agent can use it
-    tools=[get_current_time, load_memory, search_knowledge_vault, create_markdown, read_markdown, update_frontmatter, update_content],
+    tools=[
+        get_current_time,
+        load_memory,
+        search_knowledge_vault,
+        create_markdown,
+        read_markdown,
+        update_frontmatter,
+        update_content
+    ]
 )
 
 # --- Execution Logic (Only runs when you execute this file directly) ---
 async def main():
     print("🤖 Initializing AIKB Agent ...")
 
-    # --- Startup Check: Verify Resources ---
     vault_path = "./reference-vault"
+
+    #######################################################################################
+    # Startup Check: Verify and Walk Vault
+    # This is a simple check to ensure the vault exists and contains files.
+    # In the future, we might be able to use this also to build up some kind of index of
+    # the vault contents, or some kind of cache preload. For example,
+    # the search_knowledge_vault tool does this same walk, so... at the moment, this is
+    # redundant; we could probably optimize here.
+    # -------------------------------------------------------------------------------------
+    # The Python os.walk() function is a generator that recursively traverses a directory
+    # tree, providing information about each directory it visits. For each step, it yields
+    # a 3-tuple (dirpath, dirnames, filenames).
+    #######################################################################################
+
     if os.path.exists(vault_path):
-        count = sum(len([f for f in files if f.endswith('.md')]) for r, d, files in os.walk(vault_path))
+        count = 0
+        for (dirpath, dirnames, filenames) in os.walk(vault_path):
+            for file in filenames:
+                if file.endswith('.md'):
+                    count += 1
+                    full_path = os.path.join(dirpath, file)
+                    print(f"[{count}] Markdown file: {full_path}")
         print(f"📚 Knowledge Base Detected: {count} Markdown files found in '{vault_path}'")
     else:
         print(f"⚠️ Warning: '{vault_path}' folder not found!")
@@ -152,9 +152,46 @@ async def main():
 
     # 1. Initialize the Services
     # SessionService: Remembers the current conversation flow (Short-term)
+
+    # The InMemorySessionService is the default session storage mechanism in the
+    # Agent Development Kit (ADK), designed for local development and testing.
+    # It stores all session data, including conversation history and state, directly
+    # in the application's memory.
+    #
+    # Transient Data: All session data is stored in RAM and is lost if the application or
+    # process restarts, crashes, or ends. This makes it unsuitable for production
+    # environments where session persistence is required.
+    # Ease of Use: It is the default option and requires no external setup or database management,
+    # making it easy to use for prototyping and simple testing scenarios.
+    # Functionality: It acts as a central manager for the entire lifecycle of conversation sessions,
+    # handling the creation, retrieval, updating (with new events), and deletion of sessions.
+    # Shared State: For agents to share state and memory during a local run, the same instance of
+    # the InMemorySessionService must be shared across all runners.
+
     session_service = InMemorySessionService()
 
-    # MemoryService: Stores facts for later retrieval (Long-term)
+
+    # MemoryService: Stores facts for later retrieval ("Long-term Memory")
+    # Not really "Long-term Memory"; it's not persistent across sessions
+
+    # The InMemoryMemoryService in the Google Agent Development Kit (ADK) is a simple, non-persistent
+    # memory implementation designed for prototyping, local development, and basic testing. It is
+    # automatically used by InMemoryRunner if no other memory service is specified, requires no
+    # setup, and stores session events directly in application memory.
+    # No External Dependencies: The InMemoryMemoryService works out of the box without requiring any
+    # external services or Google Cloud configuration, making it ideal for quick local testing and
+    # development.
+    # Non-Persistent: Data stored in the InMemoryMemoryService is lost when the application or session
+    # restarts. It is not suitable for production applications that need reliable, long-term memory.
+    # Basic Keyword Matching: The service performs simple keyword-based matching to retrieve relevant
+    # information from past sessions, rather than advanced semantic search.
+    # Stores Full Conversations: Unlike more advanced services that extract and consolidate memories,
+    # this service treats entire conversations as memory units, which helps preserve conversational
+    # flow during development.
+    # For production environments, the VertexAiMemoryBankService or VertexAiRagMemoryService
+    # (which offer persistent, scalable memory with advanced semantic search capabilities) are
+    # recommended alternatives.
+
     memory_service = InMemoryMemoryService()
 
     # Constants for our session
@@ -172,6 +209,8 @@ async def main():
 
     # Create a Runner (The "Manager")
     # The Runner connects your Agent to the Memory and Session services
+    # Remember: For agents to share state and memory during a local run, the same instance of the
+    # InMemorySessionService must be shared across all runners.
     runner = Runner(
         agent=root_agent,
         app_name=APP_NAME,
@@ -180,7 +219,7 @@ async def main():
     )
 
     print("✨ Connected! (Memory & Session Active)")
-    print('Enter your commands ("quit" to exit).')
+    print('Enter your commands ("exit" or "quit" to exit).')
 
     # Chat Loop
     while True:
