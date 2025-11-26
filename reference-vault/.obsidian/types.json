@@ -6,6 +6,7 @@
     "startDate": "date",
     "endDate": "date",
     "updated": "date",
-    "birthDate": "date"
+    "birthDate": "date",
+    "datePublished": "date"
   }
 }

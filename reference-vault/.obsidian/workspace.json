@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "357b85080eee11ac",
+        "id": "da6b257c11f4bc3f",
         "type": "tabs",
         "children": [
           {
-            "id": "797ed29821abb519",
+            "id": "e373ee23b7ca9f33",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "0 Inbox/AIKB Markdown Ops Test Note.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "AIKB Markdown Ops Test Note"
+              "title": "New tab"
             }
           }
         ]
@@ -53,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#type/CreativeWork/Book",
+                "query": "tag:#type/CreativeWork",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -78,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 292.5
+    "width": 312.5
   },
   "right": {
     "id": "7a366235aa8f53d5",
@@ -156,7 +152,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 402.5
+    "width": 280.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -170,43 +166,43 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "797ed29821abb519",
+  "active": "e373ee23b7ca9f33",
   "lastOpenFiles": [
+    "3 Resources/Daily Notes/2025-11-26.md",
+    "2025-11-26.md",
+    "3 Resources/Creative Works/Articles/Articles.base",
+    "3 Resources/Creative Works/Articles/Ultimate Guide to Fine-Tuning LLMs.md",
+    "3 Resources/Templates/CreativeWork.md",
+    "3 Resources/Creative Works/Books/Genius Makers.md",
+    "3 Resources/Creative Works/Books/The Worlds I See.md",
+    "3 Resources/Creative Works/Books/Superintelligence.md",
+    "3 Resources/Creative Works/Books/Untitled.md",
+    "3 Resources/Creative Works/Articles/Untitled.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/Patterns for PKM.md",
+    "3 Resources/Creative Works/Articles",
+    "0 Inbox/2025-11-24 Meeting Notes.md",
     "0 Inbox/AIKB Markdown Ops Test Note.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/Pattern 1.md",
+    "3 Resources/Templates/Person.md",
+    "3 Resources/Persons/E - F/Fei-Fei Li.md",
     "3 Resources/Persons/A - C/Andrej Karpathy.md",
     "0 Inbox/2025-11-23.md",
     "Inbox/2025-11-23 Meeting Notes 2.md",
     "Inbox/Meeting Notes.md",
-    "3 Resources/Creative Works/Patterns/Patterns for PKM/Patterns for PKM.md",
     "Inbox",
     "0 Inbox/test_verification_note.md",
     "0 Inbox",
     "Inbox/Agent Test.md",
     "Verification/test_verification_note.md",
-    "3 Resources/Creative Works/Patterns/Patterns for PKM/Pattern 1.md",
     "3 Resources/Templates/Pattern.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM",
     "3 Resources/Creative Works/Patterns",
-    "3 Resources/Templates/CreativeWork.md",
     "3 Resources/Templates/Organization.md",
     "3 Resources/Templates/Place.md",
     "3 Resources/Templates/Task.md",
-    "3 Resources/Templates/Project.md",
-    "3 Resources/Templates/Person.md",
-    "3 Resources/Templates/Event.md",
-    "3 Resources/Templates/DailyNote.md",
-    "3 Resources/Persons/S - T/Steven Bartlett.md",
-    "3 Resources/Persons/N - P/Nick Bostrom.md",
     "3 Resources/Persons/N - P",
-    "3 Resources/Persons/G - J/Geoffrey Hinton.md",
-    "3 Resources/Persons/E - F/Fei-Fei Li.md",
     "3 Resources/Persons/E - F",
-    "3 Resources/Persons/A - C/Cade Metz.md",
-    "3 Resources/Creative Works/Books/Superintelligence.md",
-    "3 Resources/Creative Works/Books/The Worlds I See.md",
     "3 Resources/Creative Works/Books",
-    "3 Resources/Creative Works",
-    "3 Resources/Persons/S - T/Steven Bartlett",
-    "3 Resources/Persons/K - M/Lex Fridman"
+    "3 Resources/Creative Works"
   ]
 }
