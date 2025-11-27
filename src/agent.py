@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 from google.adk.plugins.logging_plugin import (
     LoggingPlugin,
 )
+from google.adk.plugins.global_instruction_plugin import (
+    GlobalInstructionPlugin,
+)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -90,6 +93,21 @@ def search_knowledge_vault(query: str) -> dict:
 
 
 
+def load_global_instructions() -> str:
+    """Load global instructions from the .aikb directory in the reference vault."""
+    instruction_file = "./reference-vault/.aikb/global-instructions.md"
+
+    if os.path.exists(instruction_file):
+        try:
+            with open(instruction_file, "r", encoding="utf-8") as f:
+                return f.read()
+        except Exception as e:
+            print(f"⚠️  Warning: Could not read global instructions: {e}")
+            return ""
+    else:
+        print(f"ℹ️  No global instructions file found at {instruction_file}")
+        return ""
+
 
 from src.tools.markdown_ops import read_markdown, create_markdown, update_frontmatter, update_content
 
@@ -101,14 +119,14 @@ root_agent = LlmAgent(
     name='root_agent',
     description="Tells the current time and remembers user details.",
     # Updated instructions to tell the agent to use memory
-    instruction="\n".join([
-        "You are a helpful AI assistant managing a personal knowledge base.",
-        "The knowledge base is a collection of Markdown files in a 'reference-vault' directory.",
-        "You can search for notes, read them, create new ones, and update them.",
-        "When asked to update a note's content, read it first, then rewrite the content as needed and use the update_content tool.",
-        "Always check if a file exists before trying to read or update it.",
-        "Use the 'Inbox' folder for new notes unless specified otherwise."
-    ]),
+    # instruction="\n".join([
+    #     "You are a helpful AI assistant managing a personal knowledge base.",
+    #     "The knowledge base is a collection of Markdown files in a 'reference-vault' directory.",
+    #     "You can search for notes, read them, create new ones, and update them.",
+    #     "When asked to update a note's content, read it first, then rewrite the content as needed and use the update_content tool.",
+    #     "Always check if a file exists before trying to read or update it.",
+    #     "Use the 'Inbox' folder for new notes unless specified otherwise."
+    # ]),
     # Add load_memory to the tools list so the agent can use it
     tools=[
         get_current_time,
@@ -217,14 +235,25 @@ async def main():
 
     # Conditionally enable debug logging based on DEBUG environment variable
     DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
-    plugins = [LoggingPlugin()] if DEBUG else []
+    plugins = []
+
+    # Add logging plugin if DEBUG is enabled
+    if DEBUG:
+        plugins.append(LoggingPlugin())
+        print("🔍 Debug logging enabled (LoggingPlugin loaded)")
+
+    # Load and add global instruction plugin
+    global_instructions = load_global_instructions()
+    if global_instructions:
+        plugins.append(GlobalInstructionPlugin(global_instruction=global_instructions))
+        print("📋 Global instructions loaded from .aikb/global-instructions.md")
 
     runner = Runner(
         agent=root_agent,
         app_name=APP_NAME,
         session_service=session_service,
         memory_service=memory_service,
-        plugins=plugins,  # Handles standard Observability logging across ALL agents (when DEBUG=true)
+        plugins=plugins,
     )
 
     print("✨ Connected! (Memory & Session Active)")
