@@ -8,6 +8,9 @@ from google.genai import types
 import asyncio
 import os
 from dotenv import load_dotenv
+from google.adk.plugins.logging_plugin import (
+    LoggingPlugin,
+)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -211,11 +214,17 @@ async def main():
     # The Runner connects your Agent to the Memory and Session services
     # Remember: For agents to share state and memory during a local run, the same instance of the
     # InMemorySessionService must be shared across all runners.
+
+    # Conditionally enable debug logging based on DEBUG environment variable
+    DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
+    plugins = [LoggingPlugin()] if DEBUG else []
+
     runner = Runner(
         agent=root_agent,
         app_name=APP_NAME,
         session_service=session_service,
-        memory_service=memory_service
+        memory_service=memory_service,
+        plugins=plugins,  # Handles standard Observability logging across ALL agents (when DEBUG=true)
     )
 
     print("✨ Connected! (Memory & Session Active)")
