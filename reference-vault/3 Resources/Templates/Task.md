@@ -1,8 +1,9 @@
 ---
-name:
+name: {name}
 type: "[[Task]]"
 tags:
   - type/Task
-created:
-updated:
+created: {date}
+updated: {date}
 ---
+{content}

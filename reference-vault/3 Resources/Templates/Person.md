@@ -1,11 +1,12 @@
 ---
-name:
+name: {title}
 type: "[[Person]]"
 tags:
   - type/Person
-created:
-updated:
+created: {date}
+updated: {date}
 birthDate:
 memberOf:
 ---
 
+{content}

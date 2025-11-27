@@ -1,8 +1,9 @@
 ---
-name:
+name: {title}
 type: "[[DailyNote]]"
 tags:
   - type/DailyNote
-created:
-updated:
+created: {date}
+updated: {date}
 ---
+{content}

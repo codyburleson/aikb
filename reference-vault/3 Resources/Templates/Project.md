@@ -1,10 +1,11 @@
 ---
-name:
+name: {title}
 type: "[[Project]]"
 tags:
   - type/Project
-created:
-updated:
-startDate:
-endDate:
+created: {date}
+updated: {date}
+startDate: {date}
+endDate: {date}
 ---
+{content}

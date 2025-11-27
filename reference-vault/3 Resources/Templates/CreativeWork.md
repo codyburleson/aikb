@@ -1,9 +1,10 @@
 ---
-name:
+name: {title}
 type: "[[CreativeWork]]"
 tags:
   - type/CreativeWork
-created:
-updated:
+created: {date}
+updated: {date}
 creator:
 ---
+{content}
