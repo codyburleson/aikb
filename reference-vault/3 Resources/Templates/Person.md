@@ -3,8 +3,9 @@ name: {title}
 type: "[[Person]]"
 tags:
   - type/Person
-created: {date}
-updated: {date}
+  - about/AI
+created:
+updated:
 birthDate:
 memberOf:
 ---

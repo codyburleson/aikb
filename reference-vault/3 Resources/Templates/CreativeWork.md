@@ -6,5 +6,8 @@ tags:
 created: {date}
 updated: {date}
 creator:
+url:
 ---
-{content}
+## Abstract
+
+A short description that summarizes the Creative Work.

@@ -8,6 +8,9 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.adk.memory import InMemoryMemoryService
 from google.genai import types
+from google.adk.plugins.logging_plugin import (
+    LoggingPlugin,
+)
 
 # Import the tools (keeping the main file clean)
 from src.tools.markdown_ops import (
@@ -116,11 +119,17 @@ async def main():
     session_service = InMemorySessionService()
     memory_service = InMemoryMemoryService()
     
+
+    # Conditionally enable debug logging based on DEBUG environment variable
+    DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
+    plugins = [LoggingPlugin()] if DEBUG else []
+
     runner = Runner(
         agent=root_agent,
         app_name="aikb_local", # This triggers the mismatch warning, but that is fine/expected.
         session_service=session_service,
-        memory_service=memory_service
+        memory_service=memory_service,
+        plugins=plugins,  # Handles standard Observability logging across ALL agents (when DEBUG=true)
     )
 
     # Let's go!
