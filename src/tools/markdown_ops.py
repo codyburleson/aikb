@@ -1,6 +1,7 @@
 import os
 import frontmatter
 import json
+import yaml
 from datetime import datetime, date
 
 # Global cache for templates
@@ -17,7 +18,7 @@ def _get_safe_path(filename_or_path: str) -> str:
     """
     # Normalize path separators
     clean_path = os.path.normpath(filename_or_path)
-    
+
     # Check if it's already an absolute path
     if os.path.isabs(clean_path):
         # If it's absolute, it MUST start with VAULT_ROOT
@@ -31,11 +32,11 @@ def _get_safe_path(filename_or_path: str) -> str:
 
     # Join with root and resolve absolute path
     full_path = os.path.abspath(os.path.join(VAULT_ROOT, clean_path))
-    
+
     # The final check: Does the resolved path start with our vault root?
     if not full_path.startswith(VAULT_ROOT):
         raise ValueError(f"Security Alert: Access denied to {full_path}")
-    
+
     return full_path
 
 # Load templates dynamically from the folder
@@ -66,28 +67,27 @@ def load_templates(vault_path: str = VAULT_ROOT):
                 count += 1
             except Exception as e:
                 print(f"   ❌ Failed to load {filename}: {e}")
-    
-    print(f"✅ Template System Ready: {count} templates loaded.")    
 
-# Helper to fix JSON serialization issues with dates
+    print(f"✅ Template System Ready: {count} templates loaded.")
+
+# Helper to prepare metadata for function return values
 def _sanitize_metadata(metadata: dict) -> dict:
     """
-    Converts non-JSON-serializable objects (like dates) to strings.
+    Converts non-serializable objects (like datetime objects) to strings
+    for safe return in function responses.
     """
-    clean_metadata = {}
+    result = {}
     for key, value in metadata.items():
         if isinstance(value, (datetime, date)):
-            clean_metadata[key] = value.isoformat()
-        elif isinstance(value, dict):
-            clean_metadata[key] = _sanitize_metadata(value)
+            result[key] = value.isoformat() if isinstance(value, datetime) else str(value)
         elif isinstance(value, list):
-            clean_metadata[key] = [
-                item.isoformat() if isinstance(item, (datetime, date)) else item 
-                for item in value
+            result[key] = [
+                v.isoformat() if isinstance(v, (datetime, date)) else v
+                for v in value
             ]
         else:
-            clean_metadata[key] = value
-    return clean_metadata
+            result[key] = value
+    return result
 
 def read_markdown(path: str) -> dict:
     """
@@ -110,7 +110,7 @@ def read_markdown(path: str) -> dict:
 def create_markdown(filename: str, content: str, folder: str = "0 Inbox", template_name: str = "default") -> dict:
     """
     Creates a new note using a template found in the Templates folder.
-    
+
     Args:
         filename: Title of the note.
         content: The core information to insert into the note.
@@ -121,45 +121,90 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
         # 1. Prepare Path
         if not filename.endswith(".md"):
             filename += ".md"
-        
+
         # Security: Ensure folder is safe, but we construct the full path manually to create dirs
         safe_folder_path = _get_safe_path(folder)
         if not os.path.exists(safe_folder_path):
             os.makedirs(safe_folder_path)
-            
+
         full_path = os.path.join(safe_folder_path, filename)
-        
+
         if os.path.exists(full_path):
             return {"status": "error", "message": f"File '{filename}' already exists."}
 
         # 2. Load Template
-        # Fallback to a basic string if the requested template is missing
         template_key = template_name.lower()
-        raw_tmpl = LOADED_TEMPLATES.get(template_key, 
-            "---\ntype: note\ncreated: {date}\n---\n# {title}\n\n{content}")
+        if template_key not in LOADED_TEMPLATES:
+            return {"status": "error", "message": f"Template '{template_name}' not found. Available: {', '.join(LOADED_TEMPLATES.keys())}"}
 
-        # 3. Inject Data (Simple String Formatting)
-        # Note: If your templates use {{Jinja}} style braces for other things, this might break.
-        # For simple use, standard python formatting {key} is sufficient.
-        final_content = raw_tmpl.replace("{title}", filename.replace(".md", "")) \
-                                .replace("{date}", datetime.now().strftime("%Y-%m-%d")) \
-                                .replace("{content}", content)
+        # Parse template frontmatter
+        template_post = frontmatter.loads(LOADED_TEMPLATES[template_key])
+        metadata = dict(template_post.metadata)
+        body_template = template_post.content
 
-        # 4. Write File
+        # 3. Load JSON Schema (if available)
+        schema_path = os.path.join(VAULT_ROOT, ".aikb", "schemas", f"{template_name.capitalize()}.json")
+        schema = None
+        if os.path.exists(schema_path):
+            try:
+                with open(schema_path, 'r', encoding='utf-8') as f:
+                    schema = json.load(f)
+            except Exception as e:
+                print(f"Warning: Could not load schema {schema_path}: {e}")
+
+        # 4. Populate Empty Fields Based on Schema
+        now = datetime.now()
+
+        for key, value in metadata.items():
+            # Skip if already populated
+            if value:
+                continue
+
+            # Check if we have schema information for this field
+            if schema and "properties" in schema and key in schema["properties"]:
+                prop_schema = schema["properties"][key]
+                field_type = prop_schema.get("type", "string")
+                field_format = prop_schema.get("format", "")
+
+                # Populate based on type and format
+                if field_format == "date-time":
+                    metadata[key] = now.isoformat()
+                elif field_format == "date":
+                    metadata[key] = now.strftime("%Y-%m-%d")
+                elif key == "name":
+                    # Use the filename (without .md) as the name
+                    metadata[key] = filename.replace(".md", "")
+                # Other empty fields remain empty (will be filled by user or other agents)
+            else:
+                # Fallback for fields without schema (backward compatibility)
+                if key in ["created", "updated"]:
+                    metadata[key] = now.strftime("%Y-%m-%d")
+                elif key == "name":
+                    metadata[key] = filename.replace(".md", "")
+
+        # 5. Create Final Post
+        post = frontmatter.Post(content, **metadata)
+
+        # 6. Write File
         with open(full_path, "w", encoding="utf-8") as f:
-            f.write(final_content)
+            f.write(frontmatter.dumps(post))
 
-        return {"status": "success", "file_path": full_path, "message": f"Created note using '{template_key}' template."}
+        return {
+            "status": "success",
+            "file_path": full_path,
+            "message": f"Created note using '{template_key}' template with schema-based field population."
+        }
 
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
 
 # Search metadata (like a mini-SQL for the vault)
 def query_metadata(key: str, value: str) -> dict:
     """
     Searches for notes where a specific YAML frontmatter key matches a value.
     Supports substring matching (useful for [[Wikilinks]]).
-    
+
     Args:
         key: The metadata field (e.g., 'type', 'company', 'tags').
         value: The value to look for (e.g., 'Person', 'Google').
@@ -174,11 +219,11 @@ def query_metadata(key: str, value: str) -> dict:
             if file.endswith(".md"):
                 scanned_count += 1
                 full_path = os.path.join(root, file)
-                
+
                 try:
                     # frontmatter.load is efficient; it only reads the header
                     post = frontmatter.load(full_path)
-                    if not post.metadata: 
+                    if not post.metadata:
                         continue
 
                     # Check if key exists
@@ -208,23 +253,23 @@ def query_metadata(key: str, value: str) -> dict:
         return {"status": "no_results", "message": f"No notes found where '{key}' contains '{value}'."}
 
     return {
-        "status": "success", 
+        "status": "success",
         "query": f"{key} ~= {value}",
         "count": len(matches),
         "results": matches
     }
 
-def update_frontmatter(path: str, updates_json: str) -> dict:
+def update_frontmatter(path: str, updates_yaml: str) -> dict:
     """
     Updates the frontmatter metadata of an existing markdown file.
-    updates_json: JSON string containing the metadata updates.
+    updates_yaml: YAML string containing the metadata updates.
     """
     try:
         full_path = _get_safe_path(path)
         if not os.path.exists(full_path):
             return {"status": "error", "message": f"File not found: {path}"}
 
-        updates = json.loads(updates_json)
+        updates = yaml.safe_load(updates_yaml)
         post = frontmatter.load(full_path)
         post.metadata.update(updates)
 
@@ -260,11 +305,11 @@ def update_content(path: str, new_content: str) -> dict:
 
 def search_notes(query: str) -> dict:
     """
-    Performs a text search across all notes. 
+    Performs a text search across all notes.
     Use this ONLY if query_metadata fails to find what you need.
     """
     matches = {}
-    
+
     # Walk the vault
     for root, _, files in os.walk(VAULT_ROOT):
         for file in files:
@@ -273,7 +318,7 @@ def search_notes(query: str) -> dict:
                 try:
                     with open(full_path, "r", encoding="utf-8") as f:
                         content = f.read()
-                        
+
                     # Simple case-insensitive search
                     if query.lower() in content.lower():
                         # Optimization: Return a snippet, not the whole file
@@ -282,19 +327,19 @@ def search_notes(query: str) -> dict:
                         start = max(0, snippet_index - 50)
                         end = min(len(content), snippet_index + 150)
                         matches[rel_path] = "..." + content[start:end] + "..."
-                        
+
                 except Exception:
                     continue
-                    
+
     if not matches:
         return {"status": "no_results"}
-        
+
     return {"status": "success", "matches": matches}
 
 def delete_note(filename: str, folder: str) -> dict:
     """
     Deletes a markdown note from the vault.
-    
+
     Args:
         filename: The name of the file to delete (e.g., "Meeting Notes").
         folder: The folder containing the file (e.g., "Inbox").
@@ -302,18 +347,18 @@ def delete_note(filename: str, folder: str) -> dict:
     try:
         if not filename.endswith(".md"):
             filename += ".md"
-            
+
         safe_folder_path = _get_safe_path(folder)
         full_path = os.path.join(safe_folder_path, filename)
-        
+
         # Verify path is safe and exists
         safe_full_path = _get_safe_path(full_path)
-        
+
         if not os.path.exists(safe_full_path):
             return {"status": "error", "message": f"File not found: {safe_full_path}"}
-            
+
         os.remove(safe_full_path)
         return {"status": "success", "message": f"Deleted note: {filename}"}
-        
+
     except Exception as e:
         return {"status": "error", "message": str(e)}
