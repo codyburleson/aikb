@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/DailyNote.json",
+  "title": "DailyNote",
+  "description": "A document created on a given day for recording general notes and observations",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Title of the daily note (typically the date)"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[DailyNote]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/DailyNote"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date this daily note represents (YYYY-MM-DD)"
+    }
+  },
+  "required": ["type", "tags"]
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Project.json",
+  "title": "Project",
+  "description": "An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the project"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Project]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Project"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Project start date in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Project end date in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the project"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planning", "active", "on-hold", "completed", "cancelled"],
+      "description": "Current status of the project"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Project priority level"
+    }
+  },
+  "required": ["type", "tags"]
+}

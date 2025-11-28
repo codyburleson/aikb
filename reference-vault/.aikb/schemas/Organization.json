@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Organization.json",
+  "title": "Organization",
+  "description": "An organization such as a company, institution, group, or team",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the organization"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Organization]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Organization"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "member": {
+      "type": ["string", "array"],
+      "description": "Member(s) of the organization",
+      "items": {
+        "type": "string"
+      }
+    },
+    "foundingDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the organization was founded"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location of the organization"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Website URL"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the organization"
+    }
+  },
+  "required": ["type", "tags"]
+}

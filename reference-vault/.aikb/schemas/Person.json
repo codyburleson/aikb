@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Person.json",
+  "title": "Person",
+  "description": "A person (alive, dead, undead, or fictional)",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Person]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Person"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "birthDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "memberOf": {
+      "type": ["string", "array"],
+      "description": "Organization(s) this person is a member of",
+      "items": {
+        "type": "string"
+      }
+    },
+    "givenName": {
+      "type": "string",
+      "description": "Given name (first name in western contexts)"
+    },
+    "familyName": {
+      "type": "string",
+      "description": "Family name (last name in western contexts)"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "telephone": {
+      "type": "string",
+      "description": "Telephone number"
+    },
+    "jobTitle": {
+      "type": "string",
+      "description": "The job title of the person (for example, Financial Manager)"
+    },
+    "worksFor": {
+      "type": "string",
+      "description": "Organizations the person works for"
+    }
+  },
+  "required": ["type", "tags"]
+}

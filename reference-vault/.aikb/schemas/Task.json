@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Task.json",
+  "title": "Task",
+  "description": "An action item or to-do",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name or title of the task"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Task]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Task"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Task due date in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["todo", "in-progress", "blocked", "completed", "cancelled"],
+      "description": "Current status of the task"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent"],
+      "description": "Task priority level"
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "Person assigned to this task"
+    },
+    "project": {
+      "type": "string",
+      "description": "Project this task belongs to"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the task"
+    }
+  },
+  "required": ["type", "tags"]
+}

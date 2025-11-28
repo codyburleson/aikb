@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/CreativeWork.json",
+  "title": "CreativeWork",
+  "description": "The most generic kind of creative work, including books, movies, photographs, software programs, etc.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Title of the creative work"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[CreativeWork]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/CreativeWork"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "creator": {
+      "type": ["string", "array"],
+      "description": "The creator(s) of the creative work",
+      "items": {
+        "type": "string"
+      }
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL where the creative work can be accessed"
+    },
+    "datePublished": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the creative work was published"
+    },
+    "abstract": {
+      "type": "string",
+      "description": "An abstract or summary of the creative work"
+    },
+    "genre": {
+      "type": ["string", "array"],
+      "description": "Genre(s) of the creative work",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inLanguage": {
+      "type": "string",
+      "description": "The language of the content (BCP 47 language code)"
+    }
+  },
+  "required": ["type", "tags"]
+}
