@@ -6,5 +6,4 @@ tags:
 created:
 updated:
 birthDate:
-memberOf:
 ---

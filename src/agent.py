@@ -30,12 +30,31 @@ load_dotenv()
 # Application Configuration
 APP_NAME = "aikb_local"
 
+def load_global_instructions(vault_path: str = None) -> str:
+    """
+    Loads global instructions from .aikb/global-instructions.md
+    """
+    if vault_path is None:
+        vault_path = os.path.expanduser(os.getenv("VAULT_ROOT", "./reference-vault"))
+    instruction_path = os.path.join(vault_path, ".aikb", "global-instructions.md")
+    if os.path.exists(instruction_path):
+        try:
+            with open(instruction_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                print(f"📋 Global instructions loaded from {instruction_path}")
+                return content
+        except Exception as e:
+            print(f"⚠️ Error loading global instructions: {e}")
+            return ""
+    return ""
+
 # --- Main Execution ---
 async def main():
     print("🤖 System Startup: Initializing AIKB...")
 
     # Load templates first - can't do much without them
-    load_templates("./reference-vault")
+    vault_path = os.path.expanduser(os.getenv("VAULT_ROOT", "./reference-vault"))
+    load_templates(vault_path)
 
     # Create a clean list of template names
     available_templates = ", ".join(LOADED_TEMPLATES.keys())
@@ -44,7 +63,7 @@ async def main():
 
     # Scan the folder structure so the agent isn't flying blind
     # We list actual directories to prevent hallucinated folders
-    vault_path = "./reference-vault"
+    # vault_path is already set above from environment variable
     existing_folders = []
     if os.path.exists(vault_path):
         for root, dirs, files in os.walk(vault_path):
@@ -59,6 +78,9 @@ async def main():
 
     folder_context = "\n".join([f"       - {f}" for f in existing_folders])
     print(f"📝 Context Loaded: Templates=[{available_templates}] | Folders=[{len(existing_folders)} folders loaded]")
+
+    # Load global instructions
+    global_instructions = load_global_instructions(vault_path)
 
     # Define the agent with some strict safety rules
     system_instruction = f"""
@@ -78,18 +100,16 @@ async def main():
        - Default -> 'template_name="default"'.
 
     --- FOLDER SAFETY PROTOCOL (CRITICAL) ---
-    1. PREFERRED MAPPING:
-       - Template "person"  -> prefer folder "Persons"
-       - Template "project" -> prefer folder "Projects"
-       - Template "book"    -> prefer folder "Books"
-
-    2. VERIFICATION RULE (STOP & ASK):
+    1. VERIFICATION RULE (STOP & ASK):
        - Before calling 'create_markdown', check if your target 'folder' exists in the [EXISTING FOLDERS] list above.
        - IF EXISTS: Proceed immediately.
        - IF MISSING: Do NOT create the note yet.
          Reply to the user: "I notice the folder '[Target Folder]' does not exist. Do you want me to create it, or save this in '0 Inbox'?"
 
-    3. EXCEPTION: If the user explicitly says "Create a new folder" or "Yes", then you may proceed.
+    2. EXCEPTION: If the user explicitly says "Create a new folder" or "Yes", then you may proceed.
+
+    --- GLOBAL INSTRUCTIONS ---
+    {global_instructions}
 
     --- DISPLAY PROTOCOL (CRITICAL) ---
     1. READ MODE:
@@ -147,7 +167,7 @@ async def main():
     # Main chat loop
     while True:
         try:
-            user_input = await asyncio.to_thread(input, "\nYou: ")
+            user_input = await asyncio.to_thread(input, "\n👉 You: ")
             if user_input.lower() in ["exit", "quit"]:
                 break
 
@@ -157,7 +177,7 @@ async def main():
                 if event.content and event.content.parts:
                     for part in event.content.parts:
                         if part.text:
-                            print(f"Agent: {part.text}")
+                            print(f"🤖 Agent: {part.text}")
 
         except KeyboardInterrupt:
             break

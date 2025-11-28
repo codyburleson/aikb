@@ -9,7 +9,7 @@ from datetime import datetime, date
 # It is populated once when the application starts.
 LOADED_TEMPLATES = {}
 
-VAULT_ROOT = os.path.abspath("./reference-vault")
+VAULT_ROOT = os.path.abspath(os.path.expanduser(os.getenv("VAULT_ROOT", "./reference-vault")))
 
 # Security check: prevent path traversal (e.g. accessing ../../../etc/passwd)
 def _get_safe_path(filename_or_path: str) -> str:
@@ -107,7 +107,7 @@ def read_markdown(path: str) -> dict:
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-def create_markdown(filename: str, content: str, folder: str = "0 Inbox", template_name: str = "default") -> dict:
+def create_markdown(filename: str, content: str, folder: str = "0 Inbox", template_name: str = "default", frontmatter_yaml: str = None) -> dict:
     """
     Creates a new note using a template found in the Templates folder.
 
@@ -116,6 +116,7 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
         content: The core information to insert into the note.
         folder: Target folder.
         template_name: The name of the template file to use.
+        frontmatter_yaml: Optional YAML string to populate frontmatter fields.
     """
     try:
         # 1. Prepare Path
@@ -142,6 +143,15 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
         metadata = dict(template_post.metadata)
         body_template = template_post.content
 
+        # Merge provided frontmatter (if any)
+        if frontmatter_yaml:
+            try:
+                custom_metadata = yaml.safe_load(frontmatter_yaml)
+                if custom_metadata:
+                    metadata.update(custom_metadata)
+            except Exception as e:
+                print(f"Warning: Could not parse frontmatter_yaml: {e}")
+
         # 3. Load JSON Schema (if available)
         schema_path = os.path.join(VAULT_ROOT, ".aikb", "schemas", f"{template_name.capitalize()}.json")
         schema = None
@@ -167,10 +177,10 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
                 field_format = prop_schema.get("format", "")
 
                 # Populate based on type and format
-                if field_format == "date-time":
+                # ONLY auto-populate created/updated timestamps.
+                # Do NOT auto-populate generic dates like birthDate, startDate, etc.
+                if key in ["created", "updated"] and field_format == "date-time":
                     metadata[key] = now.isoformat()
-                elif field_format == "date":
-                    metadata[key] = now.strftime("%Y-%m-%d")
                 elif key == "name":
                     # Use the filename (without .md) as the name
                     metadata[key] = filename.replace(".md", "")
@@ -183,6 +193,12 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
                     metadata[key] = filename.replace(".md", "")
 
         # 5. Create Final Post
+        # Ensure no None values exist in metadata (convert to empty string)
+        # This prevents "key: null" in the YAML output
+        for key, value in metadata.items():
+            if value is None:
+                metadata[key] = ""
+
         post = frontmatter.Post(content, **metadata)
 
         # 6. Write File

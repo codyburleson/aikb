@@ -5,4 +5,10 @@ tags:
   - type/Task
 created:
 updated:
+rank: 150
+dueDate:
 ---
+
+# {task name}
+
+{task description}

@@ -9,7 +9,8 @@ def verify_tools():
     # Setup
     test_filename = "AIKB Markdown Ops Test Note"
     test_folder = "0 Inbox"
-    full_path = os.path.abspath(f"./reference-vault/{test_folder}/{test_filename}.md")
+    vault_root = os.getenv("VAULT_ROOT", "./reference-vault")
+    full_path = os.path.abspath(f"{vault_root}/{test_folder}/{test_filename}.md")
 
     if os.path.exists(full_path):
         os.remove(full_path)

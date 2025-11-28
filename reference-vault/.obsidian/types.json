@@ -8,6 +8,8 @@
     "updated": "date",
     "birthDate": "date",
     "datePublished": "date",
-    "created": "date"
+    "created": "date",
+    "rank": "number",
+    "dueDate": "date"
   }
 }

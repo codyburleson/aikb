@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aikb.org/schemas/Task.json",
   "title": "Task",
-  "description": "An action item or to-do",
+  "description": "An action item, task, to-do, or activity to do",
   "type": "object",
   "properties": {
     "name": {
@@ -60,7 +60,12 @@
     "description": {
       "type": "string",
       "description": "Detailed description of the task"
+    },
+    "rank": {
+      "type": "number",
+      "default": 150,
+      "description": "Task rank or priority number"
     }
   },
-  "required": ["type", "tags"]
+  "required": ["type", "tags", "rank"]
 }
