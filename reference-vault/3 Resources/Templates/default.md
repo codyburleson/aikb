@@ -2,9 +2,6 @@
 type: note
 tags:
   - inbox
-created: {date}
-updated: {date}
+created:
+updated:
 ---
-# {title}
-
-{content}

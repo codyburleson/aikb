@@ -1,10 +1,9 @@
 ---
-name: {title}
+name:
 type: "[[Organization]]"
 tags:
   - type/Organization
-created: {date}
-updated: {date}
+created:
+updated:
 member:
 ---
-{content}

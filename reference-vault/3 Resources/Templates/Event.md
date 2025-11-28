@@ -1,11 +1,10 @@
 ---
-name: {title}
+name:
 type: "[[Event]]"
 tags:
   - type/Event
-created: {date}
-updated: {date}
-startDate: {date}
-endDate: {date}
+created:
+updated:
+startDate:
+endDate:
 ---
-{content}

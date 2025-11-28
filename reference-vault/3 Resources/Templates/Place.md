@@ -1,9 +1,8 @@
 ---
-name: {title}
+name:
 type: "[[Place]]"
 tags:
   - type/Place
-created: {date}
-updated: {date}
+created:
+updated:
 ---
-{content}
