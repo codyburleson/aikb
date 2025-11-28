@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Event.json",
+  "title": "Event",
+  "description": "An event happening at a certain time and location",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the event"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Event]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Event"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Event start date in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Event end date in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "startTime": {
+      "type": "string",
+      "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+      "description": "Event start time in 24-hour format (HH:MM)"
+    },
+    "endTime": {
+      "type": "string",
+      "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+      "description": "Event end time in 24-hour format (HH:MM)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location where the event takes place"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of attendees (references to Person entities)"
+    },
+    "organizer": {
+      "type": "string",
+      "description": "Event organizer (reference to Person or Organization)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the event"
+    }
+  },
+  "required": ["type", "tags", "startDate"]
+}

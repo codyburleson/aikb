@@ -1,6 +1,6 @@
 # Agent-Interoperable Knowledge Base (AIKB)
 
-- **Version:** 0.2 (DRAFT)
+- **Version:** 0.3 (DRAFT)
 - **Status:** Draft Specification
 - **Date:** 2025-11-22
 - **Editors:** AIKB Working Group
@@ -136,9 +136,12 @@ Each template:
 - MUST contain YAML frontmatter
 - MUST declare a document type as a link to itself, which creates a self-referential back-link in all instances created from the template
 - MUST define the minimum required metadata properties that are necessary and sufficient to represent the entity type in a knowledge document
-- SHOULD have an associated JSON Schema available to agents for validation and proper population of the given template
+- MUST use empty values for metadata properties (not placeholders like `{date}` or `{title}`)
+- SHOULD have an associated JSON Schema available to agents for validation and proper population of instances
 - MAY define additional metadata properties that are optional
 - MAY include boilerplate content structure
+
+**Important**: Template metadata fields should contain empty values (e.g., `created:` or `name:`) rather than placeholder strings. This ensures YAML 1.2 compliance and compatibility with tools like Obsidian. Agents use the corresponding JSON Schema to determine field types and populate values when creating instances.
 
 #### Core Entity Types
 
@@ -269,10 +272,13 @@ Document content begins here.
 
 #### 5.2.1 Frontmatter Requirements
 
-- MUST use valid YAML 1.2 syntax
+- MUST use valid YAML 1.2 syntax ([YAML 1.2 Specification](https://yaml.org/spec/1.2/))
 - MUST be enclosed by `---` delimiters
 - MUST appear before any markdown content
+- MUST use empty values for unpopulated fields (not placeholder strings)
 - SHOULD include entity type indicator
+
+**Note**: Empty values in YAML can be represented as `key:` (with no value after the colon) or `key: ""` (empty string). Do not use placeholder strings like `{date}` or `{title}` as these are not valid YAML values and break compatibility with tools that parse frontmatter.
 
 ---
 
@@ -337,7 +343,26 @@ Other core entity types defined in the Reference Vault include:
 
 ### 6.3 Template Validation
 
-Agent and Application implementations SHOULD validate knowledge objects against their declared templates using JSON Schema validation.
+#### 6.3.1 JSON Schema Files
+
+Each core entity type template SHOULD have a corresponding JSON Schema file located in `.aikb/schemas/[EntityType].json`. JSON Schemas:
+
+- MUST follow JSON Schema Draft 07 or later specification
+- SHOULD define all properties available for the entity type
+- MUST specify which properties are required
+- SHOULD include property descriptions and data type formats
+- MAY define enumerations for fields with fixed value sets
+
+#### 6.3.2 Validation Requirements
+
+Agent and Application implementations SHOULD validate knowledge objects against their declared templates using JSON Schema validation. When creating instances from templates:
+
+1. Read the template file to understand structure
+2. Read the corresponding JSON Schema to understand field types and validation rules
+3. Populate empty fields with appropriate values (e.g., current timestamp for `created`, user-provided input for `name`)
+4. Validate the populated instance against the JSON Schema before writing
+
+**Example**: When creating a Project instance, the agent reads `Project.md` template, reads `Project.json` schema, populates the `name` field with user input, populates `created` with the current ISO 8601 timestamp, and validates the complete frontmatter against the schema.
 
 ### 6.4 Custom Templates
 

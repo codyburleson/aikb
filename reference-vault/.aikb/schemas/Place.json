@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aikb.org/schemas/Place.json",
+  "title": "Place",
+  "description": "Entities that have a somewhat fixed, physical location",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the place"
+    },
+    "type": {
+      "type": "string",
+      "const": "[[Place]]",
+      "description": "Entity type reference"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Classification tags",
+      "contains": {
+        "const": "type/Place"
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 format"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 format"
+    },
+    "address": {
+      "type": "string",
+      "description": "Physical address of the place"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude coordinate"
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude coordinate"
+    },
+    "containedInPlace": {
+      "type": "string",
+      "description": "Larger place that contains this place"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the place"
+    }
+  },
+  "required": ["type", "tags"]
+}

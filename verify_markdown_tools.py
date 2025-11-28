@@ -9,7 +9,8 @@ def verify_tools():
     # Setup
     test_filename = "AIKB Markdown Ops Test Note"
     test_folder = "0 Inbox"
-    full_path = os.path.abspath(f"./reference-vault/{test_folder}/{test_filename}.md")
+    vault_root = os.getenv("VAULT_ROOT", "./reference-vault")
+    full_path = os.path.abspath(f"{vault_root}/{test_folder}/{test_filename}.md")
 
     if os.path.exists(full_path):
         os.remove(full_path)
@@ -17,8 +18,9 @@ def verify_tools():
     # 1. Create Markdown
     print(f"\n1. Testing create_markdown...")
     content = "# Test Note\n\nThis is a test paragraph."
-    metadata = {"tags": ["test", "verification"], "status": "draft"}
-    result = create_markdown(test_filename, content, test_folder, json.dumps(metadata))
+    # Note: create_markdown does NOT take metadata as an argument anymore.
+    # It uses templates. We will use the default template.
+    result = create_markdown(test_filename, content, test_folder)
     print(f"Create Result: {result}")
 
     if result["status"] != "success" or not os.path.exists(full_path):
@@ -30,8 +32,9 @@ def verify_tools():
     read_result = read_markdown(full_path)
     print(f"Read Result: {read_result}")
 
-    if read_result["metadata"].get("status") != "draft":
-        print("FAILED: Metadata mismatch.")
+    # Default template might not have "status" field, so let's check for title or content
+    if "Test Note" not in read_result["content"]:
+        print("FAILED: Content mismatch.")
         return
 
     # 3. Update Frontmatter
@@ -69,7 +72,8 @@ def verify_tools():
     print("\nSUCCESS: All verification steps passed!")
 
     # Cleanup
-    # shutil.rmtree(f"./reference-vault/{test_folder}")
+    if os.path.exists(full_path):
+        os.remove(full_path)
 
 if __name__ == "__main__":
     verify_tools()
