@@ -15,14 +15,15 @@ As our [Capstone Project](https://www.kaggle.com/competitions/agents-intensive-c
 - **[Reference Vault](https://github.com/codyburleson/aikb/tree/main/reference-vault)**: A knowledge base repository with templates, schemas, knowledge documents, and other knowledge artifacts demonstrating our proposed standards in practice. Use this as a starting point for your own knowledge base and to test the agents. We recommend using [Obsidian](https://obsidian.md/) to manage your knowledge vault, but any other tool that can read and write markdown files will work.
 - **[Agent Base](https://github.com/codyburleson/aikb/tree/main/src)**: Executable source code for a core set of interoperable agents implementing various AIKB use cases.
 
-## What Can AIKB Do?
+## What Can the Agent Base Do?
 
-Imagine asking your AI assistant:
+Right now, the AIKB Agent (Code) Base can create, read, update, and delete markdown notes. It can also query and search for notes based on their metadata or content. It can use templates to create new notes and organize them into folders. It can also summarize notes if they are too long. But this is just a foundation for the beginning of a greater vision.
 
-- "What should I be working on?"
-- "Summarize all my meeting notes and completed activities from last week; just those related to the ACME project."
-- etc.
-- etc.
+Imagine having a Life Operating System ("Life OS") and an agent that truly understands you as a person, not just the context of your current comversation. With conformance to certain AIKB standards and guidelines, this becomes possible.
+
+Imagine, for example, if you ask, "What should I be working on?"
+
+In the current state, the Agent will respond with your TO-DO list (instances of the Task template/type); a simple tool. But imagine when the Agent can utilize a personal formula that incorprates your values, goals, projects, and schedule, among other things. Even your current mood can be a factor in your personal formula. With the AIKB standards and guidelines, truly smart responses become possible so that your personal knowledge base becomes the foundation for Agent truly useful Agent services, rather than just a personal notebook.
 
 ### Example Use Case
 
@@ -43,19 +44,46 @@ AIKB includes a **Critic Agent** pipeline. During regression testing, a secondar
 ### Example Session
 
 ```
-🤖 Initializing AIKB Agent ...
-📚 Knowledge Base Detected: 29 Markdown files found in './reference-vault'
-📝 Creating new session: session_01...
-✨ Connected! (Memory & Session Active)
-Enter your commands ("quit" to exit).
+🤖 Starting AIKB Agent...
+🤖 System Startup: Initializing AIKB...
+📂 Loading Templates...
+   - Loaded: default
+   - Loaded: dailynote
+   - Loaded: project
+   - Loaded: creativework
+   - Loaded: person
+   - Loaded: event
+   - Loaded: place
+   - Loaded: task
+   - Loaded: pattern
+   - Loaded: organization
+✅ Template System Ready: 10 templates loaded.
+📝 Context Loaded: Templates=[default, dailynote, project, creativework, person, event, place, task, pattern, organization] | Folders=[25 folders loaded]
+📋 Global instructions loaded from ./reference-vault/.aikb/global-instructions.md
 
-You: What can you do?
-Agent: I can help you with a few things:
+👉 You: What can you do?
+🤖 Agent: I can create, read, update, and delete markdown notes. I can also query and search for notes based on their metadata or content. I can use templates to create new notes and organize them into folders. I can also summarize notes if they are too long.
 
-*   **Tell time**: I can tell you the current time in any specified city.
-*   **Remember past conversations**: I can recall information from our previous discussions.
-*   **Search your Knowledge Vault**: I can search your local reference vault for information on specific topics, people, or projects.
-*   **Create notes**: I can create new Markdown files in your reference vault to save summaries, meeting notes, or ideas.
+👉 You: new task: Complete performance review by Nov 30
+🤖 Agent: OK. I have created a new task: "Complete performance review by Nov 30" in the "3 Resources/Tasks/To Do" folder.
+
+👉 You: Rank the task: 5
+🤖 Agent: I have updated the rank of the task "Complete performance review by Nov 30" to 5.
+
+👉 You: Order new pants, size 34/34 (or 34/33 if they exist)
+🤖 Agent: It seems like there was an issue creating the note, possibly due to the characters in the filename "Order new pants, size 34/34 (or 34/33 if they exist)". The "/" character can sometimes be interpreted as a folder separator.
+
+Would you like me to create the task with a simpler filename, such as "Order new pants size 34/34" or "Order new pants" and then add the details to the content, or save it to '0 Inbox' with the original filename?
+
+👉 You: use a simpler file name and move pants size to content body
+🤖 Agent: Okay, I have created a new task "Order new pants" in the "3 Resources/Tasks/To Do" folder. The content of the note includes "Order new pants, size 34/34 (or 34/33 if they exist)".
+
+👉 You: What should I be working on?
+🤖 Agent: You should be working on the following tasks:
+
+*   Complete performance review by Nov 30
+*   Create a banner for my LinkedIn profile
+*   Order new pants
 ```
 
 ## Acknowledgments
