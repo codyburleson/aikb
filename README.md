@@ -17,7 +17,7 @@ As our [Capstone Project](https://www.kaggle.com/competitions/agents-intensive-c
 
 ## What Can the Agent Base Do?
 
-Right now, the AIKB Agent (Code) Base can create, read, update, and delete markdown notes. It can also query and search for notes based on their metadata or content. It can use templates to create new notes and organize them into folders. It can also summarize notes if they are too long. But this is just a foundation for the beginning of a greater vision.
+Right now, the AIKB Agent (Code) Base can create, read, update, and delete markdown notes, specifically from entity type templates such as DailyNote, CreativeWork, Person, Project, Event, Place, Task, Organization. It can also query and search for notes based on their metadata or content. It can use templates to create new notes and organize them into folders. It can also summarize notes if they are too long. But this is just a foundation for the beginning of a greater vision.
 
 Imagine having a Life Operating System ("Life OS") and an agent that truly understands you as a person, not just the context of your current comversation. With conformance to certain AIKB standards and guidelines, this becomes possible.
 
