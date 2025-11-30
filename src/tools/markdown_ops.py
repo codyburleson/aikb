@@ -3,6 +3,8 @@ import frontmatter
 import json
 import yaml
 from datetime import datetime, date
+from zoneinfo import ZoneInfo
+from google import genai
 
 # Global cache for templates
 # This dictionary acts as a high-speed cache for your templates.
@@ -89,9 +91,13 @@ def _sanitize_metadata(metadata: dict) -> dict:
             result[key] = value
     return result
 
-def read_markdown(path: str) -> dict:
+def read_markdown(path: str, as_summary: bool = False) -> dict:
     """
     Reads a markdown file and returns its metadata and content.
+    
+    Args:
+        path: The path to the markdown file.
+        as_summary: If True, returns a summary of the content instead of the full text.
     """
     try:
         full_path = _get_safe_path(path)
@@ -99,10 +105,26 @@ def read_markdown(path: str) -> dict:
             return {"status": "error", "message": f"File not found: {path}"}
 
         post = frontmatter.load(full_path)
+        content = post.content
+
+        if as_summary and content.strip():
+            try:
+                client = genai.Client()
+                response = client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=f"Summarize the following note concisely, capturing key points and context:\n\n{content}"
+                )
+                if response.text:
+                    content = f"[SUMMARY]\n{response.text}"
+            except Exception as e:
+                print(f"⚠️ Summarization failed: {e}")
+                # Fallback to full content if summarization fails
+                pass
+
         return {
             "status": "success",
             "metadata": _sanitize_metadata(post.metadata),
-            "content": post.content
+            "content": content
         }
     except Exception as e:
         return {"status": "error", "message": str(e)}
@@ -163,7 +185,12 @@ def create_markdown(filename: str, content: str, folder: str = "0 Inbox", templa
                 print(f"Warning: Could not load schema {schema_path}: {e}")
 
         # 4. Populate Empty Fields Based on Schema
-        now = datetime.now()
+        # Timezone Logic
+        configured_tz = os.getenv("TIMEZONE", "")
+        try:
+            now = datetime.now(ZoneInfo(configured_tz)) if configured_tz else datetime.now()
+        except Exception:
+            now = datetime.now()
 
         for key, value in metadata.items():
             # Skip if already populated

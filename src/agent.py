@@ -11,6 +11,8 @@ from google.genai import types
 from google.adk.plugins.logging_plugin import (
     LoggingPlugin,
 )
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # Import the tools (keeping the main file clean)
 from src.tools.markdown_ops import (
@@ -82,9 +84,23 @@ async def main():
     # Load global instructions
     global_instructions = load_global_instructions(vault_path)
 
+    # Temporal Context
+    configured_tz = os.getenv("TIMEZONE", "")
+    try:
+        now = datetime.now(ZoneInfo(configured_tz)) if configured_tz else datetime.now()
+    except Exception:
+        now = datetime.now()
+    
+    current_date_str = now.strftime("%A, %B %d, %Y")
+    current_time_str = now.strftime("%H:%M")
+
     # Define the agent with some strict safety rules
     system_instruction = f"""
     You are an intelligent Knowledge Base Manager.
+
+    --- TEMPORAL CONTEXT ---
+    Current Date: {current_date_str}
+    Current Time: {current_time_str}
 
     --- DYNAMIC RESOURCES ---
     1. AVAILABLE TEMPLATES: [{available_templates}]
@@ -116,6 +132,7 @@ async def main():
        - When using 'read_markdown', return ONLY the file 'content' by default.
        - Do NOT show the Metadata/YAML Frontmatter (tags, UUIDs, dates) unless the user explicitly asks for it.
        - If the user asks "Show me the metadata" or "What are the tags?", THEN show the full details.
+       - **CONTEXT COMPACTION**: If the user asks to "summarize" a note or if you suspect the note is very large, use 'as_summary=True' in 'read_markdown'.
 
     --- SEARCH STRATEGY ---
     - First, try 'query_metadata' (e.g., key="type", value="Person").
