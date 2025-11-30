@@ -32,6 +32,10 @@ Agent: Analyzes 7 daily notes following AIKB metadata standards
 Output: Structured weekly summary with trends, achievements, and action items
 ```
 
+## Automated Actor-Critic Evaluation
+
+AIKB includes a **Critic Agent** pipeline. During regression testing, a secondary LLM instance acts as a judge, analyzing the notes created by the main agent to score them on coherence and formatting quality before they are committed to the vault.
+
 ## Getting Started
 
 > 🚀 **Want to get started immediately?** Check out our [QUICKSTART.md](QUICKSTART.md) for a streamlined setup process!

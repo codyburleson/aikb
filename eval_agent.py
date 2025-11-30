@@ -1,88 +1,72 @@
-import subprocess
-import time
+import asyncio
 import os
-import shutil
+import frontmatter
+from dotenv import load_dotenv
+from google.genai import types
+from google.adk.models.google_llm import Gemini # Or standard GenAI SDK
 
-def run_evaluation():
-    print("🚀 Starting Agent Evaluation...")
+# Import your main agent's tools to test them
+from src.tools.markdown_ops import create_markdown, read_markdown, delete_note, load_templates
 
-    # Define the test scenario
-    test_note_name = "EvalTestNote"
-    test_content = "This is a test note created by the evaluation script."
-    expected_file = f"reference-vault/0 Inbox/{test_note_name}.md"
+load_dotenv()
+
+async def run_evaluation():
+    print("🧪 Starting AIKB Multi-Agent Evaluation...")
     
-    # Ensure clean state
-    if os.path.exists(expected_file):
-        os.remove(expected_file)
+    # Load templates first
+    load_templates()
+    
+    # SETUP
+    test_file = "Evaluation_Test_Note"
+    test_folder = "0 Inbox"
+    content_to_write = "Python is a high-level programming language. It is great for AI."
+    
+    # --- PHASE 1: THE ACTOR (Your Main System) ---
+    print(f"\n[Actor Agent] Creating note '{test_file}'...")
+    result = create_markdown(test_file, content_to_write, folder=test_folder)
+    
+    if result['status'] != 'success':
+        print("❌ CRITICAL FAIL: Actor could not create file.")
+        return
 
-    # Start the agent process
-    # We use the virtual environment's python to ensure dependencies are met
-    process = subprocess.Popen(
-        [".venv/bin/python3", "-m", "src.agent"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        cwd=os.getcwd()
+    # Read the file back to get what was actually written
+    file_data = read_markdown(f"{test_folder}/{test_file}.md")
+    actual_content = file_data.get('content', '')
+    
+    # --- PHASE 2: THE CRITIC (The Second Agent) ---
+    print("\n[Critic Agent] Reviewing the work...")
+    
+    # We create a temporary LLM instance for the critic
+    # You can use the standard google-genai SDK here for simplicity
+    from google import genai
+    client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+    
+    critic_prompt = f"""
+    You are a strict Content Quality Control Agent.
+    Your job is to evaluate the following Markdown note content.
+    
+    CRITERIA:
+    1. Is the content coherent?
+    2. Is it free of hallucinations?
+    3. Does it follow standard text formatting?
+    
+    CONTENT TO REVIEW:
+    "{actual_content}"
+    
+    OUTPUT FORMAT:
+    Return strictly a JSON: {{"score": 1-10, "reason": "short explanation"}}
+    """
+    
+    response = client.models.generate_content(
+        model="gemini-2.5-flash", 
+        contents=critic_prompt
     )
-
-    try:
-        # Wait for agent to initialize (simple sleep for now, could be more robust by reading stdout)
-        time.sleep(5) 
-
-        # Send command to create a note
-        command = f"Create a note called '{test_note_name}' with content '{test_content}'\n"
-        print(f"📤 Sending command: {command.strip()}")
-        process.stdin.write(command)
-        process.stdin.flush()
-
-        # Wait for processing
-        time.sleep(5)
-
-        # Send exit command
-        process.stdin.write("exit\n")
-        process.stdin.flush()
-        
-        # Wait for process to finish
-        stdout, stderr = process.communicate(timeout=5)
-        
-        print("\n--- Agent Output ---")
-        print(stdout)
-        if stderr:
-            print("\n--- Agent Errors ---")
-            print(stderr)
-        print("--------------------\n")
-
-        # Verify file creation
-        possible_paths = [
-            f"reference-vault/0 Inbox/{test_note_name}.md",
-            f"reference-vault/Inbox/{test_note_name}.md"
-        ]
-        
-        found_file = None
-        for path in possible_paths:
-            if os.path.exists(path):
-                found_file = path
-                break
-        
-        if found_file:
-            print(f"✅ SUCCESS: File '{found_file}' was created.")
-            with open(found_file, "r") as f:
-                content = f.read()
-                if test_content in content:
-                    print("✅ SUCCESS: Content verification passed.")
-                else:
-                    print(f"❌ FAILURE: Content mismatch. Found:\n{content}")
-            
-            # Cleanup
-            os.remove(found_file)
-            print("🧹 Cleanup: Removed test file.")
-        else:
-            print(f"❌ FAILURE: File '{test_note_name}.md' was NOT created in any expected inbox.")
-
-    except Exception as e:
-        print(f"❌ ERROR: Evaluation failed with exception: {e}")
-        process.kill()
+    
+    print(f"🧐 Critic's Verdict:\n{response.text}")
+    
+    # --- PHASE 3: CLEANUP ---
+    delete_note(test_file, test_folder)
+    print("\n✅ Evaluation Cycle Complete.")
 
 if __name__ == "__main__":
-    run_evaluation()
+    asyncio.run(run_evaluation())
