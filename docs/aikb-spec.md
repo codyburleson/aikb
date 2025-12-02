@@ -27,7 +27,7 @@ This is a draft specification under active development for the [Capstone Project
 6. [Templates and Schemas](#6-templates-and-schemas)
 7. [Metadata Vocabulary](#7-metadata-vocabulary)
 8. [Linking and References](#8-linking-and-references)
-9. [Use Cases](#9-use-cases)
+9. [Use Cases](#9-use-cases-informative)
 10. [Agent Interaction Protocol](#10-agent-interaction-protocol)
 11. [Security and Privacy](#11-security-and-privacy)
 
@@ -461,7 +461,7 @@ attendees:
 
 ## 9. Use Cases (Informative)
 
-This section provides high-level use cases that demonstrate the intended application of AIKB-compliant knowledge bases. Detailed scenarios, example interactions, and requirements traceability are documented in the companion [AIKB Use Cases and Requirements](./aikb-use-cases.md) document.
+This section provides high-level use cases that demonstrate the intended application of AIKB-compliant knowledge bases.
 
 ### 9.1 Contact Information Retrieval
 
@@ -470,6 +470,7 @@ Agents retrieve contact details for individuals stored in the knowledge base.
 **Example Query**: "Give me John Smith's email address"
 
 **Agent Actions**:
+
 1. Search vault for Person entities matching "John Smith"
 2. Parse YAML frontmatter to extract `email` property
 3. Return contact information to user
@@ -481,11 +482,13 @@ Agents retrieve contact details for individuals stored in the knowledge base.
 Agents query scheduled events, create calendar views, and manage recurring appointments.
 
 **Example Queries**:
+
 - "What events do I have this week?"
 - "Show me all events related to the ACME project"
 - "When is my next meeting with Sarah?"
 
 **Agent Actions**:
+
 1. Query Event entities by date range or filters
 2. Parse temporal metadata (`startDate`, `startTime`, recurrence patterns)
 3. Resolve entity references (attendees, related projects)
@@ -498,11 +501,13 @@ Agents query scheduled events, create calendar views, and manage recurring appoi
 Agents aggregate project information, track progress, and identify next actions across multiple initiatives.
 
 **Example Queries**:
+
 - "What's the status of the AIKB project?"
 - "Show me all high-priority projects"
 - "What are my next actions across all active projects?"
 
 **Agent Actions**:
+
 1. Query Project entities by status, priority, or other filters
 2. Extract progress metrics, milestones, and action items
 3. Resolve relationships (sub-projects, team members, stakeholders)
@@ -515,11 +520,13 @@ Agents aggregate project information, track progress, and identify next actions 
 Agents analyze entity relationships to build queryable knowledge graphs.
 
 **Example Use**:
+
 - Visualize connections between people, projects, and events
 - Discover implicit relationships through backlinks
 - Identify knowledge clusters and themes
 
 **Agent Actions**:
+
 1. Traverse all knowledge objects in vault
 2. Parse entity references in frontmatter and content
 3. Build graph with entities as nodes and references as edges
@@ -532,12 +539,14 @@ Agents analyze entity relationships to build queryable knowledge graphs.
 Agents enrich existing knowledge objects with additional metadata based on content analysis.
 
 **Example Actions**:
+
 - Extract structured information from unstructured notes
 - Auto-populate missing metadata fields
 - Suggest entity relationships and tags
 - Generate summaries and descriptions
 
 **Agent Actions**:
+
 1. Read knowledge object content
 2. Apply NLP/LLM analysis to extract entities and information
 3. Validate against entity template schemas
@@ -550,11 +559,13 @@ Agents enrich existing knowledge objects with additional metadata based on conte
 Multiple users with separate vaults share and synchronize knowledge objects through agent mediation.
 
 **Example Scenarios**:
+
 - Team members share project updates
 - Collaborative event planning
 - Distributed contact management
 
 **Agent Considerations**:
+
 - Conflict resolution for concurrent edits
 - Privacy and access control
 - Merge strategies for divergent versions
@@ -563,7 +574,7 @@ Multiple users with separate vaults share and synchronize knowledge objects thro
 
 ---
 
-**Note**: These use cases are informative and non-normative. Implementations MAY support additional use cases beyond those listed here. For detailed scenarios with example data and agent interactions, see the [AIKB Use Cases and Requirements](./aikb-use-cases.md) document.
+**Note**: These use cases are informative and non-normative. Implementations MAY support additional use cases beyond those listed here.
 
 ---
 
@@ -572,6 +583,7 @@ Multiple users with separate vaults share and synchronize knowledge objects thro
 (To be developed)
 
 Topics to cover:
+
 - Vault discovery and validation
 - Read/write operations
 - Conflict resolution
@@ -585,6 +597,7 @@ Topics to cover:
 (To be developed)
 
 Topics to cover:
+
 - Access control considerations
 - Personal data handling
 - Agent authentication
@@ -601,34 +614,14 @@ Topics to cover: TBD
 
 ---
 
-## Appendix A: Complete JSON Schemas
-
-The core JSON schemas are maintained in: [AIKB Reference Vault / .aikb/schemas](https://github.com/codyburleson/aikb/tree/main/reference-vault/.aikb/schemas).
-
----
-
-## Appendix B: Core Document Templates
-
-The core document templates are maintained in: [AIKB Reference Vault / 3 Resources/Templates](https://github.com/codyburleson/aikb/tree/main/reference-vault/3%20Resources/Templates).
-
----
-
-## Appendix C: Change Log
-
-### Version 0.1 (2025-11-22)
-
-- Initial draft specification
-
----
-
 ## References
 
 - [CommonMark Specification](https://spec.commonmark.org/)
-- [YAML 1.2 Specification](https://yaml.org/spec/1.2/)
-- [vCard Format (RFC 6350)](https://datatracker.ietf.org/doc/html/rfc6350)
-- [Schema.org](https://schema.org/)
+- [Dublin Core™ Metadata Element Set](https://www.dublincore.org/specifications/dublin-core/dces/)
 - [ISO 8601 Date and Time Format](https://www.iso.org/iso-8601-date-and-time-format.html)
 - [JSON Schema](https://json-schema.org/)
+- [Schema.org](https://schema.org/)
+- [YAML 1.2 Specification](https://yaml.org/spec/1.2/)
 
 ---
 
