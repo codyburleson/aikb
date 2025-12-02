@@ -1,8 +1,8 @@
 # Agent-Interoperable Knowledge Base (AIKB)
 
-- **Version:** 0.3 (DRAFT)
+- **Version:** 0.4 (DRAFT)
 - **Status:** Draft Specification
-- **Date:** 2025-11-22
+- **Date:** 2025-12-01
 - **Editors:** AIKB Working Group
 
 ---
@@ -24,7 +24,7 @@ This is a draft specification under active development for the [Capstone Project
 3. [Core Concepts](#3-core-concepts)
 4. [File System Structure](#4-file-system-structure)
 5. [Document Format Standards](#5-document-format-standards)
-6. [Entity Types and Templates](#6-entity-types-and-templates)
+6. [Templates and Schemas](#6-templates-and-schemas)
 7. [Metadata Vocabulary](#7-metadata-vocabulary)
 8. [Linking and References](#8-linking-and-references)
 9. [Use Cases](#9-use-cases)
@@ -282,64 +282,83 @@ Document content begins here.
 
 ---
 
-## 6. Entity Types and Templates
+## 6. Templates and Schemas
 
 ### 6.1 Overview
 
-Entity types define structured categories of knowledge objects within the vault. Each entity type is represented by a template that specifies the required and optional metadata properties, content structure, and validation rules.
+Templates are markdown documents with pre-populated frontmatter and content that are copied to create Instances of a given Entity Type. Templates typically contain a minimal set of frontmatter properties acting as placeholders; some may be pre-populated with values and others may be empty and intended to be populated by the user when the Instance is created.
 
-### 6.2 Core Entity Type Templates
+Schemas are JSON documents providing a formal descriptions of the structure of Entity Types. To improve interoperability with agents and tools, a JSON schema file SHOULD exist that corresponds to an Entity Type Template. That is to say, for each Template, a corresponding JSON Schema SHOULD exist. While a Template may only contain minimal properties, a Schema defines a comprehensive set of properties that may be used in Templates and Instances of the given type.
 
-The following core entity types are defined in the Reference Vault and available for use in AIKB-compliant knowledge bases. Full template definitions are provided in [Appendix B](#appendix-b-core-document-templates).
+An Entity Type can be thought of as the combination of a Template and its corresponding Schema.
 
-#### 6.2.1 Person Template
+### 6.2 Core Entity Types
 
-Represents an individual person (alive, dead, undead, or fictional).
+The following core Entity Types exist in the Reference Vault and available for use in AIKB-compliant knowledge vaults.
 
-**Required Properties**:
-- `type`: `[[Person Template]]`
-- `name`: Full name of the person
+#### CreativeWork
 
-**Optional Properties**:
-- `givenName`, `familyName`, `email`, `telephone`, `address`, `worksFor`, `jobTitle`, `birthDate`, etc.
+Books, articles, media, software
 
-**Use Cases**: Contact management, relationship tracking, biographical information
+- Reference Template: [3 Resources/Templates/CreativeWork.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/CreativeWork.md)
+- Schema: [.aikb/CreativeWork.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/CreativeWork.json)
+- Example Use Cases: Library management, inventory tracking, study notes, technical notes, bookmarks
 
-#### 6.2.2 Event Template
+#### DailyNote
+
+Notes taken on a specific date
+
+- Reference Template: [3 Resources/Templates/DailyNote.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/DailyNote.md)
+- Schema: [.aikb/DailyNote.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/DailyNote.json)
+- Example Use Cases: Daily note taking, journaling, meeting minutes
+
+#### Event
 
 Represents an event happening at a certain time and location.
 
-**Required Properties**:
-- `type`: `[[Event Template]]`
-- `name`: Name of the event
-- `startDate`: Event start date (ISO 8601)
+- Reference Template: [3 Resources/Templates/Event.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Event.md)
+- Schema: [.aikb/Event.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Event.json)
+- Example Use Cases: Calendar management, meeting tracking, historical timeline construction
 
-**Optional Properties**:
-- `startTime`, `endDate`, `endTime`, `location`, `attendees`, `organizer`, `description`, etc.
+#### Organization
 
-**Use Cases**: Calendar management, meeting tracking, historical timeline construction
+Companies, institutions, groups
 
-#### 6.2.3 Project Template
+- Reference Template: [3 Resources/Templates/Organization.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Organization.md)
+- Schema: [.aikb/Organization.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Organization.json)
+- Example Use Cases: Contact management, relating affiliations, aggregating lists, graphs
+
+#### Person
+
+Represents an individual person (alive, dead, undead, or fictional).
+
+- Reference Template: [3 Resources/Templates/Person.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Person.md)
+- Schema: [.aikb/Person.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Person.json)
+- Example Use Cases: Contact management, relationship tracking, biographical information
+
+#### Place
+
+Locations with physical presence
+
+- Reference Template: [3 Resources/Templates/Place.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Place.md)
+- Schema: [.aikb/Place.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Place.json)
+- Example Use Cases: Travel planning/logging, inventory management, historical research
+
+#### Project
 
 Represents an enterprise or initiative planned to achieve a particular aim.
 
-**Required Properties**:
-- `type`: `[[Project Template]]`
-- `name`: Project name
+- Reference Template: [3 Resources/Templates/Project.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Project.md)
+- Schema: [.aikb/Project.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Project.json)
+- Example Use Cases: Project management, progress tracking, resource planning
 
-**Optional Properties**:
-- `description`, `startDate`, `endDate`, `status`, `priority`, `stakeholders`, `objectives`, `actionItems`, etc.
+#### Task
 
-**Use Cases**: Project management, progress tracking, resource planning
+Action items and to-dos
 
-#### 6.2.4 Additional Core Templates
-
-Other core entity types defined in the Reference Vault include:
-- **CreativeWork Template**: Books, articles, media, software
-- **DailyNote Template**: Journal entries and daily logs
-- **Organization Template**: Companies, institutions, groups
-- **Place Template**: Locations with physical presence
-- **Task Template**: Action items and to-dos
+- Reference Template: [3 Resources/Templates/Task.md](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/3%20Resources/Templates/Task.md)
+- Schema: [.aikb/Task.json](https://raw.githubusercontent.com/codyburleson/aikb/refs/heads/main/reference-vault/.aikb/schemas/Task.json)
+- Example Use Cases: Project management, to-do lists, productivity systems, issue tracking
 
 ### 6.3 Template Validation
 
@@ -355,7 +374,7 @@ Each core entity type template SHOULD have a corresponding JSON Schema file loca
 
 #### 6.3.2 Validation Requirements
 
-Agent and Application implementations SHOULD validate knowledge objects against their declared templates using JSON Schema validation. When creating instances from templates:
+Agent and tool implementations SHOULD validate document Instances against their declared templates using JSON Schema validation. When creating instances from templates:
 
 1. Read the template file to understand structure
 2. Read the corresponding JSON Schema to understand field types and validation rules
@@ -366,10 +385,10 @@ Agent and Application implementations SHOULD validate knowledge objects against 
 
 ### 6.4 Custom Templates
 
-Users and organizations MAY define custom entity types by:
+Users MAY define custom entity types by:
 
-1. Creating a template file in the Templates
-2. Defining a JSON Schema for the entity type in `.aikb/schemas/`
+1. Creating a Template file for a given Entity Type
+2. Defining a JSON Schema for the Entity Type in the Vault root under `/.aikb/schemas/`
 
 ---
 
@@ -382,11 +401,11 @@ All metadata property names MUST:
 - Use camelCase formatting (e.g., `givenName`, `startDate`)
 - Avoid spaces or special characters
 - Be descriptive and unambiguous
-- Prefer established vocabularies (eg. [Schema.org](https://schema.org/), [Dublin Core](https://dublincore.org/))
+- Prefer established vocabularies (eg. [Schema.org](https://schema.org/), [Dublin Core™ Metadata Element Set](https://www.dublincore.org/specifications/dublin-core/dces/))
 
 ### 7.2 Common Metadata Properties
 
-The following properties are applicable across entity types and SHOULD be included in frontmatter of all templates in the order of appearance:
+The following properties are applicable across Entity Types and SHOULD be included in frontmatter of all templates in the order of appearance:
 
 | Property | Type | Description | Format |
 |----------|------|-------------|--------|
