@@ -6,7 +6,7 @@ tags:
 created: 2025-02-06
 updated: 2025-02-06
 ---
-## MAP OF CONTENT
+# MAP OF CONTENT
 
 _Version 1, last modified: Feb 6, 2025_
 
@@ -89,12 +89,12 @@ This pattern has been particularly successful in:
 
 The pattern is strengthened when combined with:
 
-- [[BIDIRECTIONAL LINKING]]
+- [BIDIRECTIONAL LINKING](BIDIRECTIONAL%20LINKING.md)
 - CONCEPT CLUSTERING
 - KNOWLEDGE GRAPH
 - TRAIL MARKER
-- [[ATOMIC NOTES]]
-- [[PARA METHOD]]
+- [ATOMIC NOTES](ATOMIC%20NOTES.md)
+- [PARA METHOD](PARA%20METHOD.md)
 
 ### References:
 

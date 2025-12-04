@@ -72,9 +72,9 @@ The success of this pattern has been proven across various knowledge management 
 
 This pattern is strengthened when combined with:
 
-- [[ATOMIC NOTES]]: Small, focused notes create clearer, more specific relationships than large documents
+- [ATOMIC NOTES](ATOMIC%20NOTES.md): Small, focused notes create clearer, more specific relationships than large documents
 - **Knowledge Graph**: Visualizes the network of relationships created by bidirectional links
-- [**Map of Content**](https://medium.com/@cody.burleson/patterns-for-pkm-map-of-content-a1c0faaa0220): Provides curated entry points into networks of bidirectionally linked notes
+- [MAP OF CONTENT](MAP%20OF%20CONTENT.md): Provides curated entry points into networks of bidirectionally linked notes
 - **Trail Marker**: Documents paths through networks of linked notes
 - **Concept Clustering**: Groups emerge naturally through bidirectional link patterns
 - **Emergence Board**: Provides space to explore patterns discovered through backlinks
