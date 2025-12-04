@@ -6,7 +6,7 @@ tags:
 created: 2025-02-14
 updated: 2025-02-14
 ---
-## EVERGREEN NOTES
+# EVERGREEN NOTES
 
 _Version 1, last modified: February 14, 2025_
 
@@ -68,11 +68,11 @@ This pattern is particularly powerful when applied to:
 
 The pattern becomes stronger when combined with:
 
-- [[ATOMIC NOTES]]
-- [[BIDIRECTIONAL LINKING]]
+- [ATOMIC NOTES](ATOMIC%20NOTES.md)
+- [BIDIRECTIONAL LINKING](BIDIRECTIONAL%20LINKING.md)
 - PROGRESSIVE SUMMARIZATION
 - CONCEPT CLUSTERING
-- [GARDEN MAINTENANCE](https://medium.com/@cody.burleson/patterns-for-pkm-garden-maintenance-50c5dfe12b20)
+- [GARDEN MAINTENANCE](GARDEN%20MAINTENANCE.md)
 - KNOWLEDGE GRAPH
 - VERSION HISTORY
 

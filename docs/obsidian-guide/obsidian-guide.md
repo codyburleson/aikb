@@ -6,7 +6,9 @@ Guidelines from the AIKB team on how we like to configure and use Obsidian for o
 
 - In Obsidian, go to Settings > Community plugins: Turn on community plugins
 - Restricted mode: Turn on and reload
-- Files and links > Default location for new attachments: In subfolder under current folder (e.g., vault/folder/attachments)
+- Files and links >
+  - Default location for new attachments: In subfolder under current folder (e.g., vault/folder/attachments)
+  - Use `[[wiki links]]: off
 - Appearance > Interface > Show inline title: off
 - Daily Notes >
   - New file location: 3 Resources/Daily Notes

@@ -79,13 +79,13 @@ This pattern has been particularly successful in:
 
 The pattern is strengthened when combined with:
 
-- [ATOMIC NOTES](https://medium.com/@cody.burleson/patterns-for-pkm-atomic-notes-21ebc578bd6a)
-- [MAP OF CONTENT](https://medium.com/@cody.burleson/patterns-for-pkm-map-of-content-a1c0faaa0220)
+- [ATOMIC NOTES](ATOMIC%20NOTES.md)
+- [MAP OF CONTENT](MAP%20OF%20CONTENT.md)
 - PROGRESSIVE SUMMARIZATION
 - KNOWLEDGE GRAPH
-- [BIDIRECTIONAL LINKING](https://medium.com/@cody.burleson/patterns-for-pkm-bidirectional-linking-c0c61f380334)
+- [BIDIRECTIONAL LINKING](BIDIRECTIONAL%20LINKING.md)
 - VERSION HISTORY
-- [GARDEN MAINTENANCE](https://medium.com/@cody.burleson/patterns-for-pkm-garden-maintenance-50c5dfe12b20)
+- [GARDEN MAINTENANCE](GARDEN%20MAINTENANCE.md)
 - KNOWLEDGE LIFECYCLE
 
 ### References:

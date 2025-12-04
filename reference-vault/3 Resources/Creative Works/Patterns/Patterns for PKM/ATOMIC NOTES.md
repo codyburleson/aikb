@@ -6,7 +6,7 @@ tags:
 created: 2025-02-02
 updated: 2025-02-22
 ---
-## ATOMIC NOTES
+# ATOMIC NOTES
 
 _Version 2, last modified: February 22, 2025_
 
@@ -78,11 +78,11 @@ This pattern has been particularly successful in:
 
 The pattern is strengthened when combined with:
 
-- [[BIDIRECTIONAL LINKING]]
-- [MAP OF CONTENT](https://medium.com/@cody.burleson/patterns-for-pkm-map-of-content-a1c0faaa0220)
+- [BIDIRECTIONAL LINKING](BIDIRECTIONAL%20LINKING.md)
+- [MAP OF CONTENT](MAP%20OF%20CONTENT.md)
 - PROGRESSIVE SUMMARIZATION
-- [EVERGREEN NOTES](https://medium.com/@cody.burleson/patterns-for-pkm-evergreen-notes-da698c174887)
-- [ZETTELKASTEN METHOD](https://medium.com/@cody.burleson/patterns-for-pkm-zettelkasten-method-4264bbdb0d95)
+- [EVERGREEN NOTES](EVERGREEN%20NOTES.md)
+- [ZETTELKASTEN METHOD](ZETTELKASTEN%20METHOD.md)
 - CONCEPT CLUSTERING
 - EMERGENCE BOARD
 

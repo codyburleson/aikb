@@ -150,12 +150,12 @@ This pattern has been particularly successful in:
 
 The pattern is strengthened when combined with:
 
-- [[ATOMIC NOTES]]
-- [[BIDIRECTIONAL LINKING]]
+- [ATOMIC NOTES](ATOMIC%20NOTES.md)
+- [BIDIRECTIONAL LINKING](BIDIRECTIONAL%20LINKING.md)
 - LITERATURE NOTES TO PERMANENT NOTES
 - KNOWLEDGE GRAPH
 - PROGRESSIVE SUMMARIZATION
-- [[MAP OF CONTENT]]
+- [MAP OF CONTENT](MAP%20OF%20CONTENT.md)
 
 ### References
 

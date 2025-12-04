@@ -2,5 +2,6 @@
   "propertiesInDocument": "visible",
   "alwaysUpdateLinks": true,
   "attachmentFolderPath": "./attachments",
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "useMarkdownLinks": true
 }

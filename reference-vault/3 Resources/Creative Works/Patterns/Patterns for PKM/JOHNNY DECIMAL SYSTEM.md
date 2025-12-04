@@ -1,12 +1,12 @@
 ---
-name:
+name: JOHNNY DECIMAL SYSTEM
 type: "[[Pattern]]"
 tags:
   - type/CreativeWork/Pattern
 created: 2025-01-28
 updated: 2025-02-05
 ---
-## JOHNNY DECIMAL SYSTEM
+# JOHNNY DECIMAL SYSTEM
 
 _Version 2, last modified: Feb 5, 2025_
 
@@ -92,12 +92,12 @@ This pattern has been particularly successful in:
 
 The pattern is strengthened when combined with:
 
-- [[PARA METHOD]]
-- [MAP OF CONTENT](https://medium.com/@cody.burleson/patterns-for-pkm-map-of-content-a1c0faaa0220)
+- [PARA METHOD](PARA%20METHOD.md)
+- [MAP OF CONTENT](MAP%20OF%20CONTENT.md)
 - KNOWLEDGE GRAPH
 - TRAIL MARKER
 - VERSION HISTORY
-- [GARDEN MAINTENANCE](https://medium.com/@cody.burleson/patterns-for-pkm-garden-maintenance-50c5dfe12b20)
+- [GARDEN MAINTENANCE](GARDEN%20MAINTENANCE.md)
 - KNOWLEDGE LIFECYCLE
 
 ## References
