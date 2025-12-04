@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ca7e3f2af6c344ce",
+        "id": "fff378e724851152",
         "type": "tabs",
         "children": [
           {
-            "id": "a677e38ad2ad9915",
+            "id": "60624b17ff206a51",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "3 Resources/Templates/Task.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Task"
+              "title": "New tab"
             }
           }
         ]
@@ -142,13 +138,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3 Resources/Templates/Task.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Task"
+              "title": "Outline"
             }
           }
         ],
@@ -170,10 +165,31 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "a677e38ad2ad9915",
+  "active": "60624b17ff206a51",
   "lastOpenFiles": [
-    "3 Resources/Templates/default.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/EVERGREEN NOTES.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/evergreen-notes-patter-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/ZETTELKASTEN METHOD.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/BIDIRECTIONAL LINKING.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/ATOMIC NOTES.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/PARA METHOD.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/MAP OF CONTENT.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/JOHNNY DECIMAL SYSTEM.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/map-of-content-pattern-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/johnny-decimal-system-pattern-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/bidirectional-linking-pattern-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/atomin-notes-pattern-banner-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/design-patterns-book-cover 1.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/About Patterns for PKM.md",
+    "3 Resources/Templates/Pattern.md",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/design-patterns-book-cover.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/a-pattern-language-book-cover.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/about-patterns-for-pkm-banner-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/para-method-diagram.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments",
+    "3 Resources/Templates/CreativeWork.md",
     "3 Resources/Templates/Task.md",
+    "3 Resources/Templates/default.md",
     "3 Resources/Tasks/To Do/Get Christmas gifts.md",
     "3 Resources/Tasks/To Do/Complete Performance Review.md",
     "3 Resources/Tasks/To Do/Create a banner for my LinkedIn profile.md",
@@ -191,22 +207,10 @@
     "1 Projects/AIKB Capstone Project/Developer Logs/cburleson/2025-11-22.md",
     "1 Projects/AIKB Capstone Project/Developer Logs/cburleson/2025-11-17.md",
     "1 Projects/AIKB Capstone Project/Developer Logs/cburleson/2025-11-16.md",
-    "1 Projects/AIKB Capstone Project/Developer Logs/cburleson/2025-11-09.md",
-    "1 Projects/AIKB Capstone Project/Mermaid Diagrams/system-flowchart.md",
-    "1 Projects/AIKB Capstone Project/Mermaid Diagrams/sequence-diagram.md",
-    "1 Projects/AIKB Capstone Project/Mermaid Diagrams/data-flow-diagram.md",
-    "1 Projects/AIKB Capstone Project/Mermaid Diagrams/component-diagram.md",
-    "1 Projects/AIKB Capstone Project/Features/Query for Event Information.md",
-    "1 Projects/AIKB Capstone Project/Features/Query for Contact Information.md",
-    "1 Projects/AIKB Capstone Project/Features/Knowledge Discovery.md",
-    "1 Projects/AIKB Capstone Project/Features/Create Contact Information.md",
-    "1 Projects/AIKB Capstone Project/Features/Content Enhancement.md",
     "1 Projects/AIKB Capstone Project/Developer Logs/sumit",
     "1 Projects/AIKB Capstone Project/Developer Logs/cburleson",
     "1 Projects/AIKB Capstone Project/Mermaid Diagrams",
     "1 Projects/AIKB Capstone Project/Features",
-    "1 Projects/AIKB Capstone Project/Developer Logs",
-    "1 Projects/AIKB Capstone Project/AIKB Capstone Project.md",
-    "1 Projects/AIKB Capstone Project"
+    "1 Projects/AIKB Capstone Project/Developer Logs"
   ]
 }
