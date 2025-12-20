@@ -12,7 +12,7 @@ _Version 2, last modified: February 22, 2025_
 
 Press enter or click to view image in full size
 
-![[atomin-notes-pattern-banner-img.webp]]
+![atomic-notes-pattern-banner-img](atomic-notes-pattern-banner-img.webp)
 
 AI-generated art ([Midjourney](https://www.midjourney.com/home), prompted by the author)
 

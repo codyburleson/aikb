@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "fff378e724851152",
+        "id": "b845653c28632e03",
         "type": "tabs",
         "children": [
           {
-            "id": "60624b17ff206a51",
+            "id": "8529a3d4a0371eb2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3 Resources/Creative Works/Patterns/Patterns for PKM/ATOMIC NOTES.md",
+                "file": "3 Resources/Topics/Large Language Model.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ATOMIC NOTES"
+              "title": "Large Language Model"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#inbox",
+                "query": "tag:#type/CreativeWork/Article/TechArticle",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3 Resources/Creative Works/Patterns/Patterns for PKM/ATOMIC NOTES.md",
+                "file": "3 Resources/Topics/Large Language Model.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of ATOMIC NOTES"
+              "title": "Outline of Large Language Model"
             }
           }
         ],
@@ -156,7 +156,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 280.5
+    "width": 373.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -170,10 +170,17 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "60624b17ff206a51",
+  "active": "8529a3d4a0371eb2",
   "lastOpenFiles": [
-    "3 Resources/Creative Works/Pursuit of Happiness.md",
+    "3 Resources/Topics/Large Language Model.md",
+    "3 Resources/Topics/Gradient descent.md",
+    "3 Resources/Templates/Topic.md",
+    "3 Resources/Topics",
+    "3 Resources/Persons/G - J/Jensen Huang.md",
+    "3 Resources/Organizations/Nvidia.md",
+    "3 Resources/Creative Works/Articles/Ultimate Guide to Fine-Tuning LLMs.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/ATOMIC NOTES.md",
+    "3 Resources/Creative Works/Pursuit of Happiness.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/BIDIRECTIONAL LINKING.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/EVERGREEN NOTES.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/GARDEN MAINTENANCE.md",
@@ -191,7 +198,7 @@
     "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/map-of-content-pattern-img.webp",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/johnny-decimal-system-pattern-img.webp",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/bidirectional-linking-pattern-img.webp",
-    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/atomin-notes-pattern-banner-img.webp",
+    "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/atomic-notes-pattern-banner-img.webp",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/design-patterns-book-cover 1.webp",
     "3 Resources/Templates/Pattern.md",
     "3 Resources/Creative Works/Patterns/Patterns for PKM/attachments/design-patterns-book-cover.webp",
@@ -203,19 +210,13 @@
     "3 Resources/Tasks/To Do/Get Christmas gifts.md",
     "3 Resources/Tasks/To Do/Complete Performance Review.md",
     "3 Resources/Tasks/To Do/Create a banner for my LinkedIn profile.md",
-    "3 Resources/Persons/A - C/Cody Burleson.md",
     "3 Resources/Tasks/To Do",
     "3 Resources/Tasks",
-    "Resources/Persons/Cody Burleson.md",
     "Resources/Persons",
     "Resources",
-    "1 Projects/AIKB Capstone Project/Developer Logs/sumit/2025-11-27.md",
-    "1 Projects/AIKB Capstone Project/Developer Logs/sumit/2025-11-26.md",
-    "1 Projects/AIKB Capstone Project/Developer Logs/cburleson/2025-11-28.md",
     "1 Projects/AIKB Capstone Project/Developer Logs/sumit",
     "1 Projects/AIKB Capstone Project/Developer Logs/cburleson",
     "1 Projects/AIKB Capstone Project/Mermaid Diagrams",
-    "1 Projects/AIKB Capstone Project/Features",
-    "1 Projects/AIKB Capstone Project/Developer Logs"
+    "1 Projects/AIKB Capstone Project/Features"
   ]
 }
